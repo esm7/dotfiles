@@ -54,6 +54,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 eval `cat $HOME/dotfiles/lscolors.sh`
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
