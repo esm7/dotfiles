@@ -53,6 +53,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
+eval `cat $HOME/dotfiles/lscolors.sh`
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
