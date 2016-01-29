@@ -14,7 +14,7 @@ files="zshrc vimrc vim oh-my-zsh"    # list of files/folders to symlink in homed
 ##########
 
 already_existed=0
-if [ -d $dir ]; then
+if [ -d $olddir ]; then
 	already_existed=1
 fi
 
