@@ -63,7 +63,7 @@ else
 fi
 }
 
-if [ already_existed = 0 ]; then
+if [ $already_existed = 0 ]; then
 	read -p "Should I install oh-my-zsh and change the shell? (y/n) " -n 1;
 	echo "";
 	if [[ $REPLY =~ ^[Yy]$ ]]; then
