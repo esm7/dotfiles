@@ -18,4 +18,6 @@ hi def link TagNumber Type
 hi def link MsgType Statement
 hi def link ExecType Statement
 
+" TODO shortcuts to highlight a specific tag, hitag 
+
 let b:current_syntax = "ordertrail"
