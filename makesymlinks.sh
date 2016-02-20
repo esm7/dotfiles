@@ -29,7 +29,7 @@ git submodule update --init --quiet
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 for file in $files; do
-    mv ~/.$file ~/dotfiles_old/
+    mv ~/.$file ~/dotfiles_old/ 2>/dev/null
     ln -s $dir/$file ~/.$file
 done
 

@@ -42,6 +42,23 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+source $HOME/.zshrc.local 2> /dev/null
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
+# and http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[unknown-token]='default'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='default'
+ZSH_HIGHLIGHT_STYLES[command]='bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='bold'
+ZSH_HIGHLIGHT_STYLES[alias]='bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=blue'
+ZSH_HIGHLIGHT_STYLES[precommand]='bold'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=red'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=red'
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -50,10 +67,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(git zsh-syntax-highlighting)
 
 # User configuration
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-source $HOME/.zshrc.local 2> /dev/null
-# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 eval `cat $HOME/dotfiles/lscolors.sh`

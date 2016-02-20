@@ -12,6 +12,10 @@ set softtabstop=4
 set mouse=a
 nnoremap <M-Left> :tabprevious<CR>
 nnoremap <M-Right> :tabnext<CR>
+nnoremap <M-S-Up> <C-W><Up>
+nnoremap <M-S-Down> <C-W><Down>
+nnoremap <M-S-Left> <C-W><Left>
+nnoremap <M-S-Right> <C-W><Right>
 set clipboard^=unnamedplus
 " Don't clear the clipboard on exit
 autocmd VimLeave * call system("echo -n $'" . escape(getreg(), "'") . "' | xsel -ib")
