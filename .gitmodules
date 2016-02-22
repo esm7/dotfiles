@@ -4,3 +4,6 @@
 [submodule "oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
 	path = oh-my-zsh-custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
+[submodule "vim/bundle/vim-markdown"]
+	path = vim/bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown
