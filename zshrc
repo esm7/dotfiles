@@ -63,14 +63,22 @@ ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=red'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#            \/ IMPORTANT, zsh-syntax-highlighting must be kept last!
-plugins=(git zsh-syntax-highlighting)
+#                \/ IMPORTANT, zsh-syntax-highlighting must be kept last!
+plugins=(vi-mode git zsh-syntax-highlighting)
 
 # User configuration
 
 source $ZSH/oh-my-zsh.sh
 eval `cat $HOME/dotfiles/lscolors.sh`
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+# The vi-mode plugin removes the important ^r binding
+bindkey '^r' history-incremental-search-backward
+# Home key variants
+bindkey '\e[1~' vi-beginning-of-line
+bindkey '\eOH' vi-beginning-of-line
+# End key variants
+bindkey '\e[4~' vi-end-of-line
+bindkey '\eOF' vi-end-of-line
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
