@@ -1,7 +1,7 @@
 execute pathogen#infect()
 syntax enable
 
-source .vimrc.base
+source ~/.vimrc.base
 
 set background=light
 colorscheme solarized
