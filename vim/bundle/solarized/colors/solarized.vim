@@ -389,9 +389,14 @@ if &background == "light"
     let s:base1       = s:temp01
     let s:base2       = s:temp02
     let s:base3       = s:temp03
-    " Patch the original theme so it won't modify the background color
+    " Erez: Patch the original theme so it won't modify the background color
+	" when in terminal mode, but do so in gvim
     if (s:back != "NONE")
-        let s:back    = "NONE"
+		if (has("gui_running"))
+			let s:back    = s:base03
+		else        
+			let s:back    = "NONE"
+		endif
     endif
 endif
 "}}}

@@ -1,6 +1,8 @@
 execute pathogen#infect()
 syntax enable
 
+source .vimrc.base
+
 set background=light
 colorscheme solarized
 set nobackup
@@ -11,18 +13,26 @@ set shiftwidth=4
 set softtabstop=4
 set mouse=a
 set autoread
+set smartindent
 
-" Universal part, also applies to .ideavimrc
-set incsearch
-set ignorecase
 nnoremap <M-Left> :tabprevious<CR>
 nnoremap <M-Right> :tabnext<CR>
-nnoremap <M-S-Up> <C-W><Up>
-nnoremap <M-S-Down> <C-W><Down>
-nnoremap <M-S-Left> <C-W><Left>
-nnoremap <M-S-Right> <C-W><Right>
-nnoremap <C-S-Down> <C-E>
+" Recursively map the tmux Home button to <Home>, which will be caught
+" up by the mapping in .vimrc.base
+nmap <Esc>[1~ <Home>
+imap <Esc>[1~ <Home>
+
 set clipboard^=unnamedplus
+
+" Set search highlight and its color
+hi Search ctermfg='red' guifg='#cb4b16'
+set hlsearch
+
+if has('gui_running')
+	set guioptions-=T " no toolbar
+	set guifont=Monospace\ Regular\ 11
+	set lines=40 columns=100
+endif
 
 " Powerline modifiers
 set laststatus=2

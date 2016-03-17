@@ -1,0 +1,18 @@
+" This file should include the parts of my .vimrc file that are to be shared
+" with IdeaVIM. Both .ideavimrc and .vimrc include this
+
+set incsearch
+set ignorecase
+nnoremap <M-S-Up> <C-W><Up>
+nnoremap <M-S-Down> <C-W><Down>
+nnoremap <M-S-Left> <C-W><Left>
+nnoremap <M-S-Right> <C-W><Right>
+" Scroll using Ctrl+Up/Down
+nnoremap <C-Down> <C-E>
+nnoremap <C-Up> <C-Y>
+inoremap <C-Down> <C-o><C-E>
+inoremap <C-Up> <C-o><C-Y>
+" Use Home to go to first character in line
+nnoremap <Home> _
+inoremap <Home> <C-o>_
+
