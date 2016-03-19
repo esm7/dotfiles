@@ -28,3 +28,6 @@
 [submodule "tmux/tmux-newline-detector"]
 	path = tmux/tmux-newline-detector
 	url = https://github.com/knakayama/tmux-newline-detector
+[submodule "tmux/plugins/tmux-newline-detector"]
+	path = tmux/plugins/tmux-newline-detector
+	url = https://github.com/knakayama/tmux-newline-detector
