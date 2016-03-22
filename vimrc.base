@@ -15,4 +15,6 @@ inoremap <C-Up> <C-o><C-Y>
 " Use Home to go to first character in line
 nnoremap <Home> _
 inoremap <Home> <C-o>_
-
+" Save using Ctrl+S
+nnoremap <C-s> :w<Enter>
+inoremap <C-s> <C-o>:w<Enter>

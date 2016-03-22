@@ -2,7 +2,7 @@ if exists("b:current_syntax")
   finish
 endif
 
-syn match LogInfo '^ . .*'
+syn match LogInfo '^ \. .*'
 syn match LogWarning '^ \~\~ .*'
 syn match LogError '^ ! .*'
 syn match LogCritical '^!!!.*'
