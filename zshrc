@@ -79,6 +79,8 @@ bindkey '\eOH' vi-beginning-of-line
 # End key variants
 bindkey '\e[4~' vi-end-of-line
 bindkey '\eOF' vi-end-of-line
+# Delete key sometimes doesn't work under ssh
+bindkey '\e[3~' delete-char
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

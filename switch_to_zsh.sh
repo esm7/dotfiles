@@ -5,12 +5,10 @@
 # and ZSH_VERSION doesn't exist even if we're using zsh
 if [ -z "$ZSH_VERSION" ]; then
 	if [ -e /bin/zsh ]; then
-		echo "Launching zsh..."
+		echo "Switching to zsh..."
 		export SHELL=/bin/zsh
 		exec /bin/zsh -l
 	else
 		echo "Can't find /bin/zsh :("
 	fi
-else
-	echo "In zsh"
 fi
