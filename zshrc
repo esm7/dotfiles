@@ -81,6 +81,10 @@ bindkey '\e[4~' vi-end-of-line
 bindkey '\eOF' vi-end-of-line
 # Delete key sometimes doesn't work under ssh
 bindkey '\e[3~' delete-char
+# Ctrl+Left/Right
+bindkey '\e[1;5D' backward-word
+bindkey '\e[1;5C' forward-word
+
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
