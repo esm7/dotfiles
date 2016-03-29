@@ -14,6 +14,10 @@ set softtabstop=4
 set mouse=a
 set autoread
 set smartindent
+" Trying to respond to Esc faster, see https://www.johnhawthorn.com/2012/09/vi-escape-delays/
+set timeoutlen=0 ttimeoutlen=0
+set wildmenu
+set wildmode=longest,list
 
 nnoremap <M-Left> :tabprevious<CR>
 nnoremap <M-Right> :tabnext<CR>
