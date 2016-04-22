@@ -63,8 +63,8 @@ ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=red'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#                \/ IMPORTANT, zsh-syntax-highlighting must be kept last!
-plugins=(vi-mode git zsh-syntax-highlighting)
+#                                          \/ IMPORTANT, zsh-syntax-highlighting must be kept last!
+plugins=(vi-mode docker docker-compose git zsh-syntax-highlighting)
 
 # User configuration
 
@@ -84,7 +84,8 @@ bindkey '\e[3~' delete-char
 # Ctrl+Left/Right
 bindkey '\e[1;5D' backward-word
 bindkey '\e[1;5C' forward-word
-
+# oh-my-zsh overrides Alt+. for the last word
+bindkey '\e.' insert-last-word
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
