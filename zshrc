@@ -111,3 +111,6 @@ bindkey '\e.' insert-last-word
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias df="df -h"
+alias du="du -h -d 1"
+
