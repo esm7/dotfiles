@@ -14,6 +14,9 @@ ZSH_THEME="erez"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Always auto update without a prompt
+DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
@@ -45,6 +48,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 source $HOME/.zshrc.local 2> /dev/null
 # export MANPATH="/usr/local/man:$MANPATH"
+
+# Glob completion when pressing Tab
+setopt glob_complete
 
 # See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
 # and http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting
