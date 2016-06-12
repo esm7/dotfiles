@@ -125,4 +125,4 @@ alias df="df -h"
 alias du="du -h -d 1"
 alias gps="ps -ef | grep"
 
-(cd dotfiles && git pull --quiet && cd ~)&
+(cd dotfiles && git pull --quiet && ./install && cd ~)&
