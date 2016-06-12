@@ -4,6 +4,9 @@
 
 - clean: ['~']
 
+- shell:
+  - [~/dotfiles/pre_install.sh, Running pre-install script]
+
 - link:
     ~/.bash_profile: bash_profile
     ~/.zshrc: zshrc
