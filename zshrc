@@ -1,3 +1,5 @@
+# TODO: split this file to a few, see https://github.com/anishathalye/dotfiles/tree/master/zsh
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$HOME/dotfiles/oh-my-zsh-custom
@@ -122,3 +124,5 @@ bindkey '\e.' insert-last-word
 alias df="df -h"
 alias du="du -h -d 1"
 alias gps="ps -ef | grep"
+
+(cd dotfiles && git pull --quiet && cd ~)&

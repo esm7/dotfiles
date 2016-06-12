@@ -34,3 +34,6 @@
 [submodule "vim/bundle/i3-vim-syntax"]
 	path = vim/bundle/i3-vim-syntax
 	url = https://github.com/PotatoesMaster/i3-vim-syntax
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
