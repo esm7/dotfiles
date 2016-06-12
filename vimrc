@@ -18,6 +18,7 @@ set smartindent
 set timeoutlen=0 ttimeoutlen=0
 set wildmenu
 set wildmode=longest,list
+set wildignorecase
 set pastetoggle=<F2>
 
 nnoremap <M-Left> :tabprevious<CR>

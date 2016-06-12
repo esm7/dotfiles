@@ -31,3 +31,6 @@
 [submodule "tmux/plugins/tmux-newline-detector"]
 	path = tmux/plugins/tmux-newline-detector
 	url = https://github.com/knakayama/tmux-newline-detector
+[submodule "vim/bundle/i3-vim-syntax"]
+	path = vim/bundle/i3-vim-syntax
+	url = https://github.com/PotatoesMaster/i3-vim-syntax

@@ -77,6 +77,8 @@ plugins=(vi-mode docker docker-compose git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 eval `cat $HOME/dotfiles/lscolors.sh`
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+# Make key sequences, especially considering vi mode, faster
+KEYTIMEOUT=1
 # The vi-mode plugin removes the important ^r binding
 bindkey '^r' history-incremental-search-backward
 # Home key variants
@@ -119,4 +121,4 @@ bindkey '\e.' insert-last-word
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias df="df -h"
 alias du="du -h -d 1"
-
+alias gps="ps -ef | grep"

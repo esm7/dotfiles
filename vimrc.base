@@ -12,6 +12,9 @@ nnoremap <C-Down> <C-E>
 nnoremap <C-Up> <C-Y>
 inoremap <C-Down> <C-o><C-E>
 inoremap <C-Up> <C-o><C-Y>
+" Scroll using Ctrl+j/k
+nnoremap <C-j> <C-E>
+nnoremap <C-k> <C-Y>
 " Use Home to go to first character in line
 nnoremap <Home> _
 inoremap <Home> <C-o>_
