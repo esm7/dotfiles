@@ -20,6 +20,7 @@ set wildmenu
 set wildmode=longest,list
 set wildignorecase
 set pastetoggle=<F2>
+nnoremap <F3> :set nu!<CR>
 
 nnoremap <M-Left> :tabprevious<CR>
 nnoremap <M-Right> :tabnext<CR>
