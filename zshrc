@@ -125,5 +125,5 @@ alias df="df -h"
 alias du="du -h -d 1"
 alias gps="ps -ef | grep"
 
-echo "Forking to update dotfiles..."
-(cd dotfiles && git pull --quiet && ./install > ~/dotbot.log && cd ~)&
+echo "Forking to update dotfiles, log will be at ~/dotbot.log"
+((cd dotfiles && git pull --quiet && ./install > ~/dotbot.log && cd ~ )&)
