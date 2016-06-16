@@ -9,8 +9,8 @@
 
 - link:
     ~/.bash_profile:
-	  path: bash_profile
-	  force: true
+      path: bash_profile
+      force: true
     ~/.zshrc: zshrc
     ~/.vimrc: vimrc
     ~/.vimrc.base: vimrc.base
