@@ -8,7 +8,9 @@
   - [~/dotfiles/pre_install.sh, Running pre-install script]
 
 - link:
-    ~/.bash_profile: bash_profile
+    ~/.bash_profile:
+	  path: bash_profile
+	  force: true
     ~/.zshrc: zshrc
     ~/.vimrc: vimrc
     ~/.vimrc.base: vimrc.base
