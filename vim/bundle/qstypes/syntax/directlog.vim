@@ -4,10 +4,10 @@ endif
 
 " We allow two line beginnings: the new one to denote Direct/Principle ("D: " or "P: ")
 " or the old one without it
-syn match LogInfo     '\(^[D\|P]: \)\|^ \. .*'
-syn match LogWarning  '\(^[D\|P]: \)\|^ \~\~ .*'
-syn match LogError    '\(^[D\|P]: \)\|^ ! .*'
-syn match LogCritical '\(^[D\|P]: \)\|^!!!.*'
+syn match LogInfo     '\(\(^[DP]: \)\|^\) \. .*'
+syn match LogWarning  '\(\(^[DP]: \)\|^\) \~\~ .*'
+syn match LogError    '\(\(^[DP]: \)\|^\) ! .*'
+syn match LogCritical '\(\(^[DP]: \)\|^\)!!!.*'
 
 hi def link LogCritical ErrorMsg  
 hi def link LogError Error
