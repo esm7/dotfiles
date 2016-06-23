@@ -97,6 +97,14 @@ bindkey '\e[1;5C' forward-word
 # oh-my-zsh overrides Alt+. for the last word
 bindkey '\e.' insert-last-word
 
+# Make Ctrl+Space jump to Vim normal mode at the beginning of the line
+vi-normal-begin-line() {
+	zle vi-cmd-mode
+	zle vi-beginning-of-line
+}
+zle -N vi-normal-begin-line 
+bindkey ^' ' vi-normal-begin-line 
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
