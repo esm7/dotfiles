@@ -1,6 +1,7 @@
 - defaults:
     link:
       relink: true
+      force: true
 
 - clean: ['~']
 
@@ -8,9 +9,7 @@
   - [~/dotfiles/pre_install.sh, Running pre-install script]
 
 - link:
-    ~/.bash_profile:
-      path: bash_profile
-      force: true
+    ~/.bash_profile: bash_profile
     ~/.zshrc: zshrc
     ~/.vimrc: vimrc
     ~/.vimrc.base: vimrc.base
