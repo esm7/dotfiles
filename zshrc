@@ -79,6 +79,8 @@ plugins=(vi-mode docker docker-compose git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 eval `cat $HOME/dotfiles/lscolors.sh`
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+zstyle ':completion:*' menu select=1
+
 # Make key sequences, especially considering vi mode, faster
 KEYTIMEOUT=1
 # The vi-mode plugin removes the important ^r binding
@@ -96,6 +98,8 @@ bindkey '\e[1;5D' backward-word
 bindkey '\e[1;5C' forward-word
 # oh-my-zsh overrides Alt+. for the last word
 bindkey '\e.' insert-last-word
+# Undo
+bindkey '^u' undo
 
 # Make Ctrl+Space jump to Vim normal mode at the beginning of the line
 vi-normal-begin-line() {
@@ -104,6 +108,7 @@ vi-normal-begin-line() {
 }
 zle -N vi-normal-begin-line 
 bindkey ^' ' vi-normal-begin-line 
+bindkey -a ^' ' vi-beginning-of-line
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

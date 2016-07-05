@@ -7,6 +7,7 @@ set background=light
 colorscheme solarized
 set nobackup
 set number
+set relativenumber
 set numberwidth=4
 set tabstop=4
 set shiftwidth=4
