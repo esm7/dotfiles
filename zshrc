@@ -137,6 +137,7 @@ bindkey -a ^' ' vi-beginning-of-line
 alias df="df -h"
 alias du="du -h -d 1"
 alias gps="ps -ef | grep"
+alias lt="ls -trl"
 
 echo "Forking to update dotfiles, log will be at ~/dotbot.log"
 ((cd dotfiles && git pull --quiet && ./install > ~/dotbot.log && cd ~ )&)
