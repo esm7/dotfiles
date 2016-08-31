@@ -37,3 +37,9 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
+[submodule "vim/bundle-manual/YouCompleteMe"]
+	path = vim/bundle-manual/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
+[submodule "vim/bundle-manual/syntastic"]
+	path = vim/bundle-manual/syntastic
+	url = https://github.com/scrooloose/syntastic.git
