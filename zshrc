@@ -136,7 +136,7 @@ bindkey -a ^' ' vi-beginning-of-line
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias df="df -h"
 alias du="du -h -d 1"
-alias gps="ps -ef | grep"
+alias gps="ps -ef | grep -i"
 alias lt="ls -trl"
 
 echo "Forking to update dotfiles, log will be at ~/dotbot.log"
