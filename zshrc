@@ -138,6 +138,7 @@ alias df="df -h"
 alias du="du -h -d 1"
 alias gps="ps -ef | grep -i"
 alias lt="ls -trl"
+alias rf="readlink -f"
 
 echo "Forking to update dotfiles, log will be at ~/dotbot.log"
 ((cd dotfiles && git pull --quiet && ./install > ~/dotbot.log && cd ~ )&)

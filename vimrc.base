@@ -18,6 +18,9 @@ nnoremap <C-k> <C-Y>
 " Use Home to go to first character in line
 nnoremap <Home> _
 inoremap <Home> <C-o>_
+" Remap H and L to go to the beginning and end of line
+noremap H ^
+noremap L g$
 " Save using Ctrl+S
 nnoremap <C-s> :w<Enter>
 inoremap <C-s> <C-o>:w<Enter>
