@@ -1,13 +1,13 @@
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
 PROMPT='${ret_status}%m%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 
-VI_MODE_INDICATOR="%{$fg_bold[cyan]%}[NORMAL]%{$reset_color%}"
+VI_MODE_INDICATOR="%{$fg_bold[magenta]%}[N]%{$reset_color%}"
 
 function vi_mode_prompt_info() {
-  echo "${${KEYMAP/vicmd/$VI_MODE_INDICATOR}/(main|viins)/}"
+  echo " ${${KEYMAP/vicmd/$VI_MODE_INDICATOR}/(main|viins)/}"
 }
 
-CLOCK="%{$fg[white]%}[%D{%H:%M}]%{$reset_color%}"
+CLOCK="%{$reset_color%}[%D{%H:%M}]%{$reset_color%}"
 
 RPS1='$(vi_mode_prompt_info) $CLOCK'
 
