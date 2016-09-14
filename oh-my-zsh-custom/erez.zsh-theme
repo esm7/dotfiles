@@ -7,7 +7,9 @@ function vi_mode_prompt_info() {
   echo "${${KEYMAP/vicmd/$VI_MODE_INDICATOR}/(main|viins)/}"
 }
 
-RPS1='$(vi_mode_prompt_info)'
+CLOCK="%{$fg[white]%}[%D{%H:%M}]%{$reset_color%}"
+
+RPS1='$(vi_mode_prompt_info) $CLOCK'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
