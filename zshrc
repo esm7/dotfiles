@@ -81,6 +81,9 @@ eval `cat $HOME/dotfiles/lscolors.sh`
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select=1
 
+# Source fzf, this is done before custom key bindings are set
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Make key sequences, especially considering vi mode, faster
 KEYTIMEOUT=1
 # The vi-mode plugin removes the important ^r binding
@@ -142,3 +145,4 @@ alias rf="readlink -f"
 
 echo "Forking to update dotfiles, log will be at ~/dotbot.log"
 ((cd dotfiles && git pull --quiet && ./install > ~/dotbot.log && cd ~ )&)
+

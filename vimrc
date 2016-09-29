@@ -70,3 +70,5 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:ycm_autoclose_preview_window_after_insertion = 0
+
+let g:Gitv_OpenHorizontal = 1
