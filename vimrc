@@ -31,6 +31,8 @@ nnoremap <C-Right> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
 
+set rtp+=~/.fzf
+
 " Recursively map the tmux Home button to <Home>, which will be caught
 " up by the mapping in .vimrc.base
 nmap <Esc>[1~ <Home>

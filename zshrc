@@ -72,7 +72,7 @@ ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=red'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #                                          \/ IMPORTANT, zsh-syntax-highlighting must be kept last!
-plugins=(vi-mode docker docker-compose git zsh-syntax-highlighting)
+plugins=(vi-mode taskwarrior docker docker-compose git zsh-syntax-highlighting)
 
 # User configuration
 
@@ -103,6 +103,8 @@ bindkey '\e[1;5C' forward-word
 bindkey '\e.' insert-last-word
 # Undo
 bindkey '^u' undo
+
+bindkey '^F' fzf-file-widget
 
 # Make Ctrl+Space jump to Vim normal mode at the beginning of the line
 vi-normal-begin-line() {
@@ -142,6 +144,12 @@ alias du="du -h -d 1"
 alias gps="ps -ef | grep -i"
 alias lt="ls -trl"
 alias rf="readlink -f"
+
+alias to="task limit:page office"
+alias th="task limit:page home"
+alias tp="task processing"
+alias ta="task add"
+alias tm="task modify"
 
 echo "Forking to update dotfiles, log will be at ~/dotbot.log"
 ((cd dotfiles && git pull --quiet && ./install > ~/dotbot.log && cd ~ )&)
