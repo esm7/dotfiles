@@ -59,6 +59,12 @@ let g:airline_theme='bubblegum'
 
 let mapleader=" "
 
+" Open netrw files in previous window
+let g:netrw_browse_split=4
+
+" <Leader>g to vimgrep the word under the cursor
+map <Leader>g :execute "noautocmd vimgrep /" . expand("<cword>") . "/j **/*"<Bar>:copen
+
 nnoremap <F5> :execute pathogen#infect('~/.vim/bundle-manual/{}')<CR>:source ~/.vim/bundle-manual/YouCompleteMe/plugin/youcompleteme.vim<CR>:source ~/.vim/bundle-manual/syntastic/plugin/syntastic.vim<CR>:SyntasticCheck<CR>
 " YouCompleteMe settings
 nnoremap gd :YcmCompleter GoTo<CR>
