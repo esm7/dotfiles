@@ -37,12 +37,6 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
-[submodule "vim/bundle/vim-fugitive"]
-	path = vim/bundle/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/gitv"]
-	path = vim/bundle/gitv
-	url = https://github.com/gregsexton/gitv
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/junegunn/fzf
