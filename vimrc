@@ -25,11 +25,14 @@ set wildignorecase
 set pastetoggle=<F2>
 nnoremap <F3> :set nu!<CR>
 
-" Switch tabs with Alt+Left/Right or Ctrl+h/l
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
-nnoremap <C-h> :tabprevious<CR>
-nnoremap <C-l> :tabnext<CR>
+" Don't abandon buffers when they get hidden, allowing to switch between
+" buffers with unsaved changes
+set hidden
+" Switch buffers with Ctrl+Left/Right or Ctrl+h/l
+nnoremap <C-Left> :bp<CR>
+nnoremap <C-Right> :bn<CR>
+nnoremap <C-h> :bp<CR>
+nnoremap <C-l> :bn<CR>
 
 set rtp+=~/.fzf
 
@@ -54,6 +57,11 @@ endif
 " Powerline modifiers
 set laststatus=2
 let g:airline_theme='bubblegum'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_section_y = ""
+let g:airline#extensions#whitespace#checks = [ ]
+let g:airline#extensions#tabline#buffer_min_count = 2
+
 "let g:Powerline_symbols = 'fancy'
 "let g:Powerline_symbols = 'unicode'
 
@@ -65,7 +73,7 @@ let g:netrw_browse_split=4
 " <Leader>g to vimgrep the word under the cursor
 map <Leader>g :execute "noautocmd vimgrep /" . expand("<cword>") . "/j **/*"<Bar>:copen
 
-nnoremap <F5> :execute pathogen#infect('~/.vim/bundle-manual/{}')<CR>:source ~/.vim/bundle-manual/YouCompleteMe/plugin/youcompleteme.vim<CR>:source ~/.vim/bundle-manual/syntastic/plugin/syntastic.vim<CR>:SyntasticCheck<CR>
+nnoremap <F5> :execute pathogen#infect('~/dotfiles-dev/vim/{}')<CR>:source ~/dotfiles-dev/vim/YouCompleteMe/plugin/youcompleteme.vim<CR>:source ~/dotfiles-dev/vim/syntastic/plugin/syntastic.vim<CR>:SyntasticCheck<CR>
 " YouCompleteMe settings
 nnoremap gd :YcmCompleter GoTo<CR>
 nnoremap <Leader>d :YcmCompleter GetDoc<CR>
