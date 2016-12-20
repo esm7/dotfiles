@@ -114,6 +114,8 @@ vi-normal-begin-line() {
 zle -N vi-normal-begin-line 
 bindkey ^' ' vi-normal-begin-line 
 bindkey -a ^' ' vi-beginning-of-line
+bindkey -a H vi-beginning-of-line
+bindkey -a L vi-end-of-line
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

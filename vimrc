@@ -72,6 +72,8 @@ let g:netrw_browse_split=4
 
 " <Leader>g to vimgrep the word under the cursor
 map <Leader>g :execute "noautocmd vimgrep /" . expand("<cword>") . "/j **/*"<Bar>:copen
+" <Leader>f to run fzf search
+map <Leader>f :FZF<CR>
 
 nnoremap <F5> :execute pathogen#infect('~/dotfiles-dev/vim/{}')<CR>:source ~/dotfiles-dev/vim/YouCompleteMe/plugin/youcompleteme.vim<CR>:source ~/dotfiles-dev/vim/syntastic/plugin/syntastic.vim<CR>:SyntasticCheck<CR>
 " YouCompleteMe settings
