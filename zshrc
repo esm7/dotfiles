@@ -146,6 +146,7 @@ alias du="du -h -d 1"
 alias gps="ps -ef | grep -i"
 alias lt="ls -trl"
 alias rf="readlink -f"
+alias gdtool="git difftool"
 
 alias to="task limit:page office"
 alias th="task limit:page home"
@@ -155,4 +156,7 @@ alias tm="task modify"
 
 echo "Forking to update dotfiles, log will be at ~/dotbot.log"
 ((cd dotfiles && git pull --quiet && ./install > ~/dotbot.log && cd ~ )&)
+
+# Allow executing something to run after zsh loads
+eval "$RUN_AFTER_ZSH_STARTUP"
 

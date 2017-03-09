@@ -23,7 +23,9 @@ set wildmenu
 set wildmode=longest,list
 set wildignorecase
 set pastetoggle=<F2>
-nnoremap <F3> :set nu!<CR>
+nnoremap <F3> :set nu! rnu!<CR>
+nnoremap <F9> :nohl<CR>
+inoremap <F9> <C-o>:nohl<CR>
 
 " Don't abandon buffers when they get hidden, allowing to switch between
 " buffers with unsaved changes
@@ -53,6 +55,10 @@ if has('gui_running')
 	set guifont=Ubuntu\ Mono\ Regular\ 13
 	set lines=40 columns=100
 endif
+
+au FileType markdown set wrap linebreak
+au FileType markdown set conceallevel=3
+au FileType markdown setlocal spell
 
 " Powerline modifiers
 set laststatus=2

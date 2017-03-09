@@ -12,9 +12,6 @@ nnoremap <C-Down> <C-E>
 nnoremap <C-Up> <C-Y>
 inoremap <C-Down> <C-o><C-E>
 inoremap <C-Up> <C-o><C-Y>
-" Scroll using Ctrl+j/k
-nnoremap <C-j> <C-E>
-nnoremap <C-k> <C-Y>
 " Use Home to go to first character in line
 nnoremap <Home> _
 inoremap <Home> <C-o>_
@@ -24,12 +21,8 @@ noremap L g$
 " Save using Ctrl+S
 nnoremap <C-s> :w<Enter>
 inoremap <C-s> <C-o>:w<Enter>
-" Move 10 lines/characters with Ctrl
-nnoremap <C-h> 10h
-nnoremap <C-j> 10j
-nnoremap <C-k> 10k
-nnoremap <C-l> 10l
-vnoremap <C-h> 10h
-vnoremap <C-j> 10j
-vnoremap <C-k> 10k
-vnoremap <C-l> 10l
+" Move logical lines (in case of wraps) using C+j/k
+nnoremap <C-j> gj
+nnoremap <C-k> gk
+vnoremap <C-j> gj
+vnoremap <C-k> gk
