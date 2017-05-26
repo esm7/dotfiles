@@ -43,6 +43,22 @@ set rtp+=~/.fzf
 nmap <Esc>[1~ <Home>
 imap <Esc>[1~ <Home>
 
+" Completion menu options. Source for some of them:
+" http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
+" Make completion menus accept the longest matching string
+set completeopt=longest,menuone
+" Make Enter accept the selected entry in a completion menu
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Make ^F in insert mode the same as ^X^F and also select the first entry
+inoremap <expr> <C-f> '<C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" Move up and down in autocomplete with <c-j> and <c-k>
+inoremap <expr> <c-j> ("\<C-n>")
+inoremap <expr> <c-k> ("\<C-p>")
+
+" Remove the '=' sign from being counted as a file name, because it sometimes 
+" interferes with the ability to properly find a file name with ^X^F
+set isfname-==
+
 set clipboard^=unnamedplus
 
 " Set search highlight and its color
