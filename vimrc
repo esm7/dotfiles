@@ -22,6 +22,7 @@ set timeoutlen=100 ttimeoutlen=0
 set wildmenu
 set wildmode=longest,list
 set wildignorecase
+set autochdir
 set pastetoggle=<F2>
 nnoremap <F3> :set nu! rnu!<CR>
 nnoremap <F9> :nohl<CR>
@@ -51,6 +52,8 @@ set completeopt=longest,menuone
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Make ^F in insert mode the same as ^X^F and also select the first entry
 inoremap <expr> <C-f> '<C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" Make ^P select the first entry
+inoremap <expr> <C-p> '<C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")

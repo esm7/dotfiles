@@ -147,6 +147,9 @@ alias gps="ps -ef | grep -i"
 alias lt="ls -trl"
 alias rf="readlink -f"
 alias gdtool="git difftool"
+# sudo which retains the home dir (be careful not to save anything to the home dir!)
+alias sudoh='sudo "HOME=$HOME"'
+alias mine="sudo chown $USER"
 
 alias to="task limit:page office"
 alias th="task limit:page home"
