@@ -22,7 +22,10 @@ noremap L g$
 nnoremap <C-s> :w<Enter>
 inoremap <C-s> <C-o>:w<Enter>
 " Move logical lines (in case of wraps) using C+j/k
-nnoremap <C-j> gj
-nnoremap <C-k> gk
-vnoremap <C-j> gj
-vnoremap <C-k> gk
+"nnoremap <C-j> gj
+"nnoremap <C-k> gk
+"vnoremap <C-j> gj
+"vnoremap <C-k> gk
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+
