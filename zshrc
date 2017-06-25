@@ -157,6 +157,16 @@ alias tp="task processing"
 alias ta="task add"
 alias tm="task modify"
 
+if which tmux > /dev/null; then
+	num_sessions=$(tmux list-sessions | grep -v attached | wc -l)
+	if [[ $num_sessions != "0" ]]; then
+		COLOR='\033[0;35m'
+		NC='\033[0m' # No Color
+		echo "${COLOR}You have $num_sessions unattached tmux sessions${NC}"
+		echo "Sessions list:$(tmux list-sessions -F " #{session_name}#{?session_attached,, (unattached)}" | paste -sd "," -)"
+	fi
+fi
+
 echo "Forking to update dotfiles, log will be at ~/dotbot.log"
 ((cd dotfiles && git pull --quiet && ./install > ~/dotbot.log && cd ~ )&)
 
