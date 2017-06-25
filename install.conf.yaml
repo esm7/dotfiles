@@ -13,6 +13,7 @@
     ~/.zshrc: zshrc
     ~/.vimrc: vimrc
     ~/.vimrc.base: vimrc.base
+    ~/.tmux: tmux/tmux.conf
     ~/.vim: vim
     ~/.oh-my-zsh: oh-my-zsh
     ~/.fzf: fzf
