@@ -158,7 +158,7 @@ alias ta="task add"
 alias tm="task modify"
 
 if which tmux > /dev/null; then
-	num_sessions=$(tmux list-sessions | grep -v attached | wc -l)
+	num_sessions=$(tmux list-sessions | grep -v attached | wc -l 2> /dev/null)
 	if [[ $num_sessions != "0" ]]; then
 		COLOR='\033[0;35m'
 		NC='\033[0m' # No Color
