@@ -103,6 +103,8 @@ bindkey '\e[1;5C' forward-word
 bindkey '\e.' insert-last-word
 # Undo
 bindkey '^u' undo
+# Complete most recent file matching pattern
+bindkey '^x' _most_recent_file
 
 bindkey '^F' fzf-file-widget
 
