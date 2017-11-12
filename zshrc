@@ -153,6 +153,10 @@ alias gdtool="git difftool"
 alias sudoh='sudo "HOME=$HOME"'
 alias mine="sudo chown $USER"
 
+# This alias to 'git log' shows nice columns that more or less adapt to the terminal width
+get_terminal_width() { echo $COLUMNS }
+alias glog="git log --graph --oneline --pretty=format:'''%Cred%h%Creset -%C(yellow)%d%Creset %<|(`echo $((get_terminal_width-25))`,trunc)%s %Cgreen(%cd) %C(bold blue)<%aN>%Creset''' --abbrev-commit --abbrev=4 --date=short"
+
 alias to="task limit:page office"
 alias th="task limit:page home"
 alias tp="task processing"

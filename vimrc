@@ -2,6 +2,7 @@ execute pathogen#infect()
 syntax enable
 
 source ~/.vimrc.base
+source ~/.vimrc.netrw
 
 set background=light
 colorscheme solarized
@@ -27,6 +28,11 @@ set pastetoggle=<F2>
 nnoremap <F3> :set nu! rnu!<CR>
 nnoremap <F9> :nohl<CR>
 inoremap <F9> <C-o>:nohl<CR>
+nnoremap <F12> :call SexToggle()<CR>
+
+" Workaround for a netrw bug with autochdir, see:
+" https://github.com/tpope/vim-vinegar/issues/13
+autocmd FileType netrw setl bufhidden=delete
 
 " Don't abandon buffers when they get hidden, allowing to switch between
 " buffers with unsaved changes
@@ -87,9 +93,6 @@ let g:airline_section_y = ""
 let g:airline#extensions#whitespace#checks = [ ]
 let g:airline#extensions#tabline#buffer_min_count = 2
 
-"let g:Powerline_symbols = 'fancy'
-"let g:Powerline_symbols = 'unicode'
-
 let mapleader=" "
 
 " Open netrw files in previous window
@@ -101,6 +104,7 @@ map <Leader>g :execute "noautocmd vimgrep /" . expand("<cword>") . "/j **/*"<Bar
 map <Leader>f :FZF<CR>
 " Comment/uncomment line or selection (vim-commentary)
 map <Leader>c :Commentary<CR>
+map <Leader>q :bd<CR>
 
 nnoremap <F5> :execute pathogen#infect('~/dotfiles-dev/vim/{}')<CR>:source ~/dotfiles-dev/vim/YouCompleteMe/plugin/youcompleteme.vim<CR>:source ~/dotfiles-dev/vim/syntastic/plugin/syntastic.vim<CR>:SyntasticCheck<CR>
 " YouCompleteMe settings
