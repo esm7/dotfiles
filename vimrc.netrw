@@ -1,0 +1,30 @@
+fun! SexToggle()
+	if exists("t:buf_netrw")
+		call SexClose()
+	else
+		call SexOpen()
+	endif
+endf
+
+fun! SexOpen()
+	let sex_width=10
+
+	execute "Sexplore"
+	let t:buf_netrw = bufnr("%")
+	wincmd V
+
+	" call SexSize(sex_width)
+endf
+
+fun! SexClose()
+	let cur_win_nr = winnr()
+	let target_nr = ( cur_win_nr == 1 ? winnr("#") : cur_win_nr )
+
+	1wincmd w
+	close
+	unlet t:buf_netrw
+
+	execute (target_nr - 1) . "wincmd w"
+	" call NormalizeWidths()
+endf
+

@@ -13,6 +13,7 @@
     ~/.zshrc: zshrc
     ~/.vimrc: vimrc
     ~/.vimrc.base: vimrc.base
+    ~/.vimrc.netrw: vimrc.netrw
     ~/.tmux.conf: tmux/tmux.conf
     ~/.tmux: tmux
     ~/.vim: vim
