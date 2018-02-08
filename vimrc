@@ -77,7 +77,7 @@ set hlsearch
 if has('gui_running')
 	set guioptions-=T " no toolbar
 	set anti enc=utf-8
-	set guifont=Ubuntu\ Mono\ Regular\ 13
+	set guifont=Office\ Code\ Pro\ 11.5
 	set lines=40 columns=100
 endif
 
@@ -111,13 +111,14 @@ nnoremap <F5> :execute pathogen#infect('~/dotfiles-dev/vim/{}')<CR>:source ~/dot
 nnoremap gd :YcmCompleter GoTo<CR>
 nnoremap <Leader>d :YcmCompleter GetDoc<CR>
 let g:ycm_complete_in_strings = 0
-let g:ycm_autoclose_preview_window_after_completion = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_key_list_select_completion = ['<TAB>', '<Enter>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>']
+let g:ycm_key_list_stop_completion = ['<C-y>', '<UP>', '<DOWN>']
 " Syntastic settings
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
-let g:ycm_autoclose_preview_window_after_insertion = 0
 
 let g:Gitv_OpenHorizontal = 1
