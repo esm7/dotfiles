@@ -52,3 +52,6 @@
 [submodule "vim/bundle/vim-pandoc-syntax"]
 	path = vim/bundle/vim-pandoc-syntax
 	url = https://github.com/vim-pandoc/vim-pandoc-syntax
+[submodule "vim/bundle/vim-logreview"]
+	path = vim/bundle/vim-logreview
+	url = https://github.com/andreshazard/vim-logreview.git

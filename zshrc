@@ -162,6 +162,8 @@ alias th="task limit:page home"
 alias tp="task processing"
 alias ta="task add"
 alias tm="task modify"
+alias tgo="~/scripts/task-helper.py xdg-open"
+alias tcopy="~/scripts/task-helper.py ~/scripts/clip.sh"
 
 if which tmux &> /dev/null; then
 	num_sessions=$(tmux list-sessions | grep -v attached | wc -l 2> /dev/null)

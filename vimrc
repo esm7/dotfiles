@@ -25,6 +25,7 @@ set wildmode=longest,list
 set wildignorecase
 set autochdir
 set pastetoggle=<F2>
+set nowrapscan
 nnoremap <F3> :set nu! rnu!<CR>
 nnoremap <F9> :nohl<CR>
 inoremap <F9> <C-o>:nohl<CR>
