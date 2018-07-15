@@ -165,6 +165,11 @@ alias tm="task modify"
 alias tgo="~/scripts/task-helper.py xdg-open"
 alias tcopy="~/scripts/task-helper.py ~/scripts/clip.sh"
 
+# Quick add note
+alias na="~/scripts/quick_note.sh"
+# Add with Markdown editing
+alias note="~/dev/sncli/sncli create"
+
 if which tmux &> /dev/null; then
 	num_sessions=$(tmux list-sessions | grep -v attached | wc -l 2> /dev/null)
 	if [[ $num_sessions != "0" ]]; then

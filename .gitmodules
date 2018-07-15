@@ -4,24 +4,12 @@
 [submodule "oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
 	path = oh-my-zsh-custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "vim/bundle/vim-markdown"]
-	path = vim/bundle/vim-markdown
-	url = https://github.com/plasticboy/vim-markdown
 [submodule "tmux/tmux-colors-solarized"]
 	path = tmux/tmux-colors-solarized
 	url = https://github.com/seebi/tmux-colors-solarized
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "vim/bundle/vim-airline"]
-	path = vim/bundle/vim-airline
-	url = https://github.com/vim-airline/vim-airline
-[submodule "vim/bundle/vim-airline-themes"]
-	path = vim/bundle/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes
-[submodule "vim/bundle/vim-tmux"]
-	path = vim/bundle/vim-tmux
-	url = https://github.com/tmux-plugins/vim-tmux
 [submodule "tmux/plugins/tmux-copycat"]
 	path = tmux/plugins/tmux-copycat
 	url = https://github.com/tmux-plugins/tmux-copycat
@@ -31,24 +19,57 @@
 [submodule "tmux/plugins/tmux-newline-detector"]
 	path = tmux/plugins/tmux-newline-detector
 	url = https://github.com/knakayama/tmux-newline-detector
-[submodule "vim/bundle/i3-vim-syntax"]
-	path = vim/bundle/i3-vim-syntax
-	url = https://github.com/PotatoesMaster/i3-vim-syntax
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 [submodule "fzf"]
 	path = fzf
 	url = https://github.com/junegunn/fzf
-[submodule "vim/bundle/fzf.vim"]
-	path = vim/bundle/fzf.vim
+[submodule "vim/pack/default/opt/asyncomplete-lsp.vim"]
+	path = vim/pack/default/opt/asyncomplete-lsp.vim
+	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim
+[submodule "vim/pack/default/opt/asyncomplete.vim"]
+	path = vim/pack/default/opt/asyncomplete.vim
+	url = https://github.com/prabirshrestha/asyncomplete.vim
+[submodule "vim/pack/default/opt/async.vim"]
+	path = vim/pack/default/opt/async.vim
+	url = https://github.com/prabirshrestha/async.vim
+[submodule "vim/pack/default/opt/vim-lsp"]
+	path = vim/pack/default/opt/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
+[submodule "vim/pack/default/opt/vim-highlight-cursor-words"]
+	path = vim/pack/default/opt/vim-highlight-cursor-words
+	url = https://github.com/pboettch/vim-highlight-cursor-words
+[submodule "vim/pack/default/start/vim-markdown"]
+	path = vim/pack/default/start/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown
+[submodule "vim/pack/default/start/vim-airline"]
+	path = vim/pack/default/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline
+[submodule "vim/pack/default/start/vim-airline-themes"]
+	path = vim/pack/default/start/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "vim/pack/default/start/vim-tmux"]
+	path = vim/pack/default/start/vim-tmux
+	url = https://github.com/tmux-plugins/vim-tmux
+[submodule "vim/pack/default/start/i3-vim-syntax"]
+	path = vim/pack/default/start/i3-vim-syntax
+	url = https://github.com/PotatoesMaster/i3-vim-syntax
+[submodule "vim/pack/default/start/fzf.vim"]
+	path = vim/pack/default/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-[submodule "vim/bundle/vim-commentary"]
-	path = vim/bundle/vim-commentary
+[submodule "vim/pack/default/start/vim-commentary"]
+	path = vim/pack/default/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
-[submodule "vim/bundle/editorconfig-vim"]
-	path = vim/bundle/editorconfig-vim
+[submodule "vim/pack/default/start/editorconfig-vim"]
+	path = vim/pack/default/start/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim.git
-[submodule "vim/bundle/vim-pandoc-syntax"]
-	path = vim/bundle/vim-pandoc-syntax
-	url = https://github.com/vim-pandoc/vim-pandoc-syntax
+[submodule "vim/pack/default/start/vim-vinegar"]
+	path = vim/pack/default/start/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar.git
+[submodule "vim/pack/default/start/Dockerfile.vim"]
+	path = vim/pack/default/start/Dockerfile.vim
+	url = https://github.com/ekalinin/Dockerfile.vim
+[submodule "vim/pack/default/start/vim-colors-solarized"]
+	path = vim/pack/default/start/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized

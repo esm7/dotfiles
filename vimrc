@@ -1,4 +1,6 @@
-execute pathogen#infect()
+if v:version < 800
+	execute pathogen#infect()
+endif
 syntax enable
 
 source ~/.vimrc.base
@@ -6,6 +8,7 @@ source ~/.vimrc.netrw
 
 set background=light
 colorscheme solarized
+set nocompatible
 set nobackup
 set number
 set relativenumber
@@ -19,21 +22,31 @@ set autoindent
 set smartindent
 filetype plugin indent on
 " Trying to respond to Esc faster, see https://www.johnhawthorn.com/2012/09/vi-escape-delays/
-set timeoutlen=100 ttimeoutlen=0
+set timeoutlen=150 ttimeoutlen=0
 set wildmenu
 set wildmode=longest,list
 set wildignorecase
-set autochdir
 set pastetoggle=<F2>
-set nowrapscan
 nnoremap <F3> :set nu! rnu!<CR>
 nnoremap <F9> :nohl<CR>
 inoremap <F9> <C-o>:nohl<CR>
 nnoremap <F12> :call SexToggle()<CR>
 
+" Using autochdir by default, but if dev mode turns on (see below), it will
+" turn off
+" set autochdir
+
 " Workaround for a netrw bug with autochdir, see:
 " https://github.com/tpope/vim-vinegar/issues/13
-autocmd FileType netrw setl bufhidden=delete
+" autocmd FileType netrw setl bufhidden=delete
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+let g:netrw_winsize = 25
+" Open netrw files in previous window
+" let g:netrw_browse_split=4
+
 
 " Don't abandon buffers when they get hidden, allowing to switch between
 " buffers with unsaved changes
@@ -57,13 +70,27 @@ imap <Esc>[1~ <Home>
 set completeopt=longest,menuone
 " Make Enter accept the selected entry in a completion menu
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Make ^F in insert mode the same as ^X^F and also select the first entry
-inoremap <expr> <C-f> '<C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 " Make ^P select the first entry
-inoremap <expr> <C-p> '<C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" inoremap <expr> <C-p> '<C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" Make ^F in insert mode the same as ^X^F and also select the first entry
+inoremap <expr> <C-f> '<C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
 
 " Remove the '=' sign from being counted as a file name, because it sometimes 
 " interferes with the ability to properly find a file name with ^X^F
@@ -78,7 +105,7 @@ set hlsearch
 if has('gui_running')
 	set guioptions-=T " no toolbar
 	set anti enc=utf-8
-	set guifont=Office\ Code\ Pro\ 11.5
+	set guifont=Office\ Code\ Pro\ 11
 	set lines=40 columns=100
 endif
 
@@ -96,30 +123,15 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 
 let mapleader=" "
 
-" Open netrw files in previous window
-let g:netrw_browse_split=4
-
 " <Leader>g to vimgrep the word under the cursor
 map <Leader>g :execute "noautocmd vimgrep /" . expand("<cword>") . "/j **/*"<Bar>:copen
 " <Leader>f to run fzf search
-map <Leader>f :FZF<CR>
+map <Leader>f :Files<CR>
+map <C-S-n> :Files<CR>
+map <Leader>b :Buffers<CR>
 " Comment/uncomment line or selection (vim-commentary)
 map <Leader>c :Commentary<CR>
 map <Leader>q :bd<CR>
 
-nnoremap <F5> :execute pathogen#infect('~/dotfiles-dev/vim/{}')<CR>:source ~/dotfiles-dev/vim/YouCompleteMe/plugin/youcompleteme.vim<CR>:source ~/dotfiles-dev/vim/syntastic/plugin/syntastic.vim<CR>:SyntasticCheck<CR>
-" YouCompleteMe settings
-nnoremap gd :YcmCompleter GoTo<CR>
-nnoremap <Leader>d :YcmCompleter GetDoc<CR>
-let g:ycm_complete_in_strings = 0
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_key_list_select_completion = ['<TAB>', '<Enter>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>']
-let g:ycm_key_list_stop_completion = ['<C-y>', '<UP>', '<DOWN>']
-" Syntastic settings
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+nnoremap <F5> :source ~/dotfiles/vimrc.dev<CR>
 
-let g:Gitv_OpenHorizontal = 1

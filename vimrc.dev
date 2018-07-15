@@ -1,0 +1,50 @@
+:packadd asyncomplete.vim
+:packadd async.vim
+:packadd vim-lsp
+:packadd asyncomplete-lsp.vim
+:packadd vim-highlight-cursor-words
+
+set noautochdir
+
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+if executable('cquery')
+   au User lsp_setup call lsp#register_server({
+      \ 'name': 'cquery',
+      \ 'cmd': {server_info->['cquery']},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+      \ 'initialization_options': { 'cacheDirectory': '/tmp/cquery/cache' },
+      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+      \ })
+endif
+
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+
+nnoremap gd :LspDefinition<CR>
+
+call lsp#enable()
+
+function! SwitchSourceHeader()
+  if (expand ("%:e") == "cpp")
+    find %:t:r.h
+  else
+    find %:t:r.cpp
+  endif
+endfunction
+
+nmap <Leader>o :call SwitchSourceHeader()<CR>
+
+highlight AutoHighlight ctermbg=LightMagenta
+let g:HiCursorWords_linkStyle='AutoHighlight'
+" When auto-highlight is on, hlsearch is just obstructive
+set nohlsearch
+
+echo "Loaded dev plugins"
+
