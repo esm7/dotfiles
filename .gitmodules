@@ -64,12 +64,12 @@
 [submodule "vim/pack/default/start/editorconfig-vim"]
 	path = vim/pack/default/start/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim.git
-[submodule "vim/pack/default/start/vim-vinegar"]
-	path = vim/pack/default/start/vim-vinegar
-	url = https://github.com/tpope/vim-vinegar.git
 [submodule "vim/pack/default/start/Dockerfile.vim"]
 	path = vim/pack/default/start/Dockerfile.vim
 	url = https://github.com/ekalinin/Dockerfile.vim
 [submodule "vim/pack/default/start/vim-colors-solarized"]
 	path = vim/pack/default/start/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized
+[submodule "vim/pack/default/opt/auto-pairs"]
+	path = vim/pack/default/opt/auto-pairs
+	url = https://github.com/jiangmiao/auto-pairs

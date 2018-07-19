@@ -2,6 +2,10 @@
 :packadd async.vim
 :packadd vim-lsp
 :packadd asyncomplete-lsp.vim
+:packadd auto-pairs
+
+let g:HiCursorWords_linkStyle='AutoHighlight'
+highlight AutoHighlight ctermbg=LightMagenta
 :packadd vim-highlight-cursor-words
 
 set noautochdir
@@ -41,8 +45,6 @@ endfunction
 
 nmap <Leader>o :call SwitchSourceHeader()<CR>
 
-highlight AutoHighlight ctermbg=LightMagenta
-let g:HiCursorWords_linkStyle='AutoHighlight'
 " When auto-highlight is on, hlsearch is just obstructive
 set nohlsearch
 

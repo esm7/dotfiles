@@ -30,15 +30,11 @@ set pastetoggle=<F2>
 nnoremap <F3> :set nu! rnu!<CR>
 nnoremap <F9> :nohl<CR>
 inoremap <F9> <C-o>:nohl<CR>
-nnoremap <F12> :call SexToggle()<CR>
 
 " Using autochdir by default, but if dev mode turns on (see below), it will
 " turn off
 " set autochdir
 
-" Workaround for a netrw bug with autochdir, see:
-" https://github.com/tpope/vim-vinegar/issues/13
-" autocmd FileType netrw setl bufhidden=delete
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 " let g:netrw_browse_split = 4
@@ -46,7 +42,7 @@ let g:netrw_liststyle = 3
 let g:netrw_winsize = 25
 " Open netrw files in previous window
 " let g:netrw_browse_split=4
-
+nnoremap - :Explore<CR>
 
 " Don't abandon buffers when they get hidden, allowing to switch between
 " buffers with unsaved changes
@@ -82,15 +78,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " Make ^F in insert mode the same as ^X^F and also select the first entry
 inoremap <expr> <C-f> '<C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-if executable('pyls')
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
 
 " Remove the '=' sign from being counted as a file name, because it sometimes 
 " interferes with the ability to properly find a file name with ^X^F
