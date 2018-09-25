@@ -19,8 +19,8 @@ inoremap <Home> <C-o>_
 noremap H ^
 noremap L g$
 " Save using Ctrl+S
-nnoremap <C-s> :w<Enter>
-inoremap <C-s> <C-o>:w<Enter>
+nnoremap <C-s> :wa<Enter>
+inoremap <C-s> <C-o>:wa<Enter>
 " Move logical lines (in case of wraps) using C+j/k
 "nnoremap <C-j> gj
 "nnoremap <C-k> gk

@@ -10,6 +10,7 @@ set background=light
 colorscheme solarized
 set nocompatible
 set nobackup
+set noswapfile
 set number
 set relativenumber
 set numberwidth=4
@@ -18,6 +19,8 @@ set shiftwidth=4
 set softtabstop=4
 set mouse=a
 set autoread
+" Trigger auto-read when the window focuses
+autocmd! FocusGained,BufEnter,CursorHold * checktime
 set autoindent
 set smartindent
 filetype plugin indent on
@@ -37,6 +40,7 @@ inoremap <F9> <C-o>:nohl<CR>
 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
+let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
 " let g:netrw_browse_split = 4
 " let g:netrw_altv = 1
 let g:netrw_winsize = 25
@@ -87,7 +91,14 @@ set clipboard^=unnamedplus
 
 " Set search highlight and its color
 hi Search ctermfg='red' guifg='#cb4b16'
+hi IncSearch ctermfg=DarkMagenta
 set hlsearch
+
+hi Type ctermfg=DarkBlue
+hi Statement cterm=None
+hi Operator cterm=bold
+hi Statement cterm=bold
+hi MatchParen cterm=underline,bold ctermfg=magenta ctermbg=none
 
 if has('gui_running')
 	set guioptions-=T " no toolbar
@@ -112,6 +123,9 @@ let mapleader=" "
 
 " <Leader>g to vimgrep the word under the cursor
 map <Leader>g :execute "noautocmd vimgrep /" . expand("<cword>") . "/j **/*"<Bar>:copen
+" <Leader>f to grep something recursively and case-insensitive, and position
+" the cursor where you'd enter text
+nnoremap <Leader>s :grep -RIi  *<LEFT><LEFT>
 " <Leader>f to run fzf search
 map <Leader>f :Files<CR>
 map <C-S-n> :Files<CR>

@@ -3,13 +3,17 @@
 :packadd vim-lsp
 :packadd asyncomplete-lsp.vim
 :packadd auto-pairs
+:packadd vim-fugitive
 
 let g:HiCursorWords_linkStyle='AutoHighlight'
 highlight AutoHighlight ctermbg=LightMagenta
 :packadd vim-highlight-cursor-words
 
 set noautochdir
+set signcolumn=yes
 
+" List of dependencies here:
+" https://github.com/palantir/python-language-server
 if executable('pyls')
     " pip install python-language-server
     au User lsp_setup call lsp#register_server({
@@ -31,7 +35,7 @@ endif
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
-nnoremap gd :LspDefinition<CR>
+nnoremap gd :LspDefinition<CR>:colder<CR>
 
 call lsp#enable()
 

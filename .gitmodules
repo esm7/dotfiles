@@ -73,3 +73,6 @@
 [submodule "vim/pack/default/opt/auto-pairs"]
 	path = vim/pack/default/opt/auto-pairs
 	url = https://github.com/jiangmiao/auto-pairs
+[submodule "vim/pack/default/opt/vim-fugitive"]
+	path = vim/pack/default/opt/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
