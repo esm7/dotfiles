@@ -83,6 +83,9 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " Make ^F in insert mode the same as ^X^F and also select the first entry
 inoremap <expr> <C-f> '<C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
+" Map Ctrl+h to the path of the current file when in command mode
+cmap <C-h> %:p:h
+
 " Remove the '=' sign from being counted as a file name, because it sometimes 
 " interferes with the ability to properly find a file name with ^X^F
 set isfname-==
