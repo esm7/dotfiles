@@ -6,6 +6,8 @@ syntax enable
 source ~/.vimrc.base
 source ~/.vimrc.netrw
 
+:packadd vim-fugitive
+
 set background=light
 colorscheme solarized
 set nocompatible
@@ -19,20 +21,35 @@ set shiftwidth=4
 set softtabstop=4
 set mouse=a
 set autoread
-" Trigger auto-read when the window focuses
-autocmd! FocusGained,BufEnter,CursorHold * checktime
-set autoindent
-set smartindent
-filetype plugin indent on
+set nosol
 " Trying to respond to Esc faster, see https://www.johnhawthorn.com/2012/09/vi-escape-delays/
 set timeoutlen=150 ttimeoutlen=0
 set wildmenu
 set wildmode=longest,list
 set wildignorecase
+set spelllang=en_us
+set listchars=tab:>-
+" Toggle paste mode
 set pastetoggle=<F2>
+" Toggle line numbers (i.e. for easy copy over tmux)
 nnoremap <F3> :set nu! rnu!<CR>
+" Toggle display of special characters
+nnoremap <F4> :set list!<CR>
+" Turn off highlight
 nnoremap <F9> :nohl<CR>
 inoremap <F9> <C-o>:nohl<CR>
+
+set autoindent
+set smartindent
+filetype plugin indent on
+set breakindent
+set showbreak=↳\ 
+" Indent Python `func(\n` just one space rather than two
+let g:pyindent_open_paren = '&sw'
+" Indentation for C comments, see:
+" https://www.reddit.com/r/vim/comments/9kz5rk/format_of_c_comments/
+au FileType cpp setlocal comments=s1:/*,m:\ ,ex-4:*/,://
+set cinoptions=c4
 
 " Using autochdir by default, but if dev mode turns on (see below), it will
 " turn off
@@ -69,7 +86,7 @@ imap <Esc>[1~ <Home>
 " Make completion menus accept the longest matching string
 set completeopt=longest,menuone
 " Make Enter accept the selected entry in a completion menu
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Make ^P select the first entry
 " inoremap <expr> <C-p> '<C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 " Move up and down in autocomplete with <c-j> and <c-k>
@@ -79,7 +96,7 @@ imap <c-space> <Plug>(asyncomplete_force_refresh)
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " Make ^F in insert mode the same as ^X^F and also select the first entry
 inoremap <expr> <C-f> '<C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
@@ -136,6 +153,7 @@ map <Leader>b :Buffers<CR>
 " Comment/uncomment line or selection (vim-commentary)
 map <Leader>c :Commentary<CR>
 map <Leader>q :bd<CR>
+map <Leader>w :w<CR>:bd<CR>
 
 nnoremap <F5> :source ~/dotfiles/vimrc.dev<CR>
 
