@@ -56,7 +56,8 @@ set cinoptions=c4
 " set autochdir
 
 let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+let g:netrw_liststyle = 1
+let g:netrw_timefmt = "%a %Y-%m-%d %T"
 let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
 " let g:netrw_browse_split = 4
 " let g:netrw_altv = 1
@@ -130,6 +131,7 @@ endif
 au FileType markdown set wrap linebreak
 au FileType markdown set conceallevel=3
 au FileType markdown setlocal spell
+au FileType markdown set nofoldenable
 
 " Powerline modifiers
 set laststatus=2
