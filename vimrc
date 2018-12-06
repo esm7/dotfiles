@@ -31,8 +31,10 @@ set spelllang=en_us
 set listchars=tab:>-
 " Toggle paste mode
 set pastetoggle=<F2>
-" Toggle line numbers (i.e. for easy copy over tmux)
-nnoremap <F3> :set nu! rnu!<CR>
+" Toggle line numbers (i.e. for easy copy over tmux).
+" TODO: find a good way to toggle breaks (currently in the first time F3 is used, 
+" showbreak is removed)
+nnoremap <F3> :set nu! rnu!<CR>:set showbreak=<CR>
 " Toggle display of special characters
 nnoremap <F4> :set list!<CR>
 " Turn off highlight
@@ -120,6 +122,7 @@ hi Statement cterm=None
 hi Operator cterm=bold
 hi Statement cterm=bold
 hi MatchParen cterm=underline,bold ctermfg=magenta ctermbg=none
+hi SpellBad cterm=underline ctermfg=red
 
 if has('gui_running')
 	set guioptions-=T " no toolbar

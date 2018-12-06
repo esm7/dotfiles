@@ -166,9 +166,10 @@ alias tgo="~/scripts/task-helper.py xdg-open"
 alias tcopy="~/scripts/task-helper.py ~/scripts/clip.sh"
 
 # Quick add note
-alias na="~/scripts/quick_note.sh"
+# alias na="~/scripts/quick_note.sh"
 # Add with Markdown editing
-alias note="~/dev/sncli/sncli create"
+# alias note="~/dev/sncli/sncli create"
+alias notes="~/scripts/notes-fzf.py --editor=vim"
 
 if which tmux &> /dev/null; then
 	num_sessions=$(tmux list-sessions | grep -v attached | wc -l 2> /dev/null)
