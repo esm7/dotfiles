@@ -82,3 +82,9 @@
 [submodule "vim/pack/default/start/vim-surround"]
 	path = vim/pack/default/start/vim-surround
 	url = https://github.com/tpope/vim-surround
+[submodule "vim/pack/default/opt/echodoc.vim"]
+	path = vim/pack/default/opt/echodoc.vim
+	url = https://github.com/Shougo/echodoc.vim
+[submodule "vim/pack/default/start/vim-vinegar"]
+	path = vim/pack/default/start/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar.git

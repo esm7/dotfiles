@@ -66,7 +66,7 @@ let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
 let g:netrw_winsize = 25
 " Open netrw files in previous window
 " let g:netrw_browse_split=4
-nnoremap - :Explore<CR>
+" nnoremap - :Explore<CR>
 
 " Don't abandon buffers when they get hidden, allowing to switch between
 " buffers with unsaved changes

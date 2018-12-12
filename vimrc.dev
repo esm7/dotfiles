@@ -5,6 +5,7 @@
 :packadd auto-pairs
 :packadd vim-fugitive
 :packadd vim-python-pep8-indent
+:packadd echodoc.vim
 
 let g:HiCursorWords_linkStyle='AutoHighlight'
 highlight AutoHighlight ctermbg=LightMagenta
@@ -12,6 +13,8 @@ highlight AutoHighlight ctermbg=LightMagenta
 
 set noautochdir
 set signcolumn=yes
+set noshowmode
+EchoDocEnable
 
 " List of dependencies here:
 " https://github.com/palantir/python-language-server
