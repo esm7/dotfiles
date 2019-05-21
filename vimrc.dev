@@ -1,20 +1,33 @@
-:packadd asyncomplete.vim
-:packadd async.vim
-:packadd vim-lsp
-:packadd asyncomplete-lsp.vim
-:packadd auto-pairs
-:packadd vim-fugitive
-:packadd vim-python-pep8-indent
-:packadd echodoc.vim
-
 let g:HiCursorWords_linkStyle='AutoHighlight'
 highlight AutoHighlight ctermbg=LightMagenta
-:packadd vim-highlight-cursor-words
+
+call plug#load('vim-python-pep8-indent', 'vim-highlight-cursor-words')
+call plug#load('auto-pairs')
+" call plug#load('echodoc.vim')
+call plug#load('async.vim', 'vim-lsp', 'vim-fugitive')
 
 set noautochdir
 set signcolumn=yes
 set noshowmode
-EchoDocEnable
+" EchoDocEnable
+
+if has("nvim")
+	call plug#load('ncm2', 'nvim-yarp', 'ncm2-vim-lsp')
+	call plug#load('ncm2-neosnippet', 'neosnippet.vim', 'neosnippet-snippets')
+	autocmd BufEnter * call ncm2#enable_for_buffer()
+	set completeopt=noinsert,menuone,noselect
+	inoremap <silent> <expr> <CR> ncm2_neosnippet#expand_or("\<CR>", 'n')
+	
+else
+	call plug#load('asyncomplete.vim', 'asyncomplete-lsp.vim')
+	let g:asyncomplete_smart_completion = 1
+	let g:asyncomplete_auto_popup = 1
+	let g:asyncomplete_remove_duplicates = 1
+	imap <c-space> <Plug>(asyncomplete_force_refresh)
+	" https://github.com/prabirshrestha/asyncomplete.vim/issues/59
+	set shortmess+=c
+
+endif
 
 " List of dependencies here:
 " https://github.com/palantir/python-language-server
@@ -46,12 +59,22 @@ endif
 "       \ })
 " endif
 
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif 
+
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
-nnoremap gd :LspDefinition<CR>:colder<CR>
-
 call lsp#enable()
+
+nnoremap gd :LspDefinition<CR>:colder<CR>
+" Goto definition in a new window
+nmap <C-w>gd <C-w>sgd
 
 function! SwitchSourceHeader()
   if (expand ("%:e") == "cpp")
@@ -62,6 +85,7 @@ function! SwitchSourceHeader()
 endfunction
 
 nmap <Leader>o :call SwitchSourceHeader()<CR>
+nmap <Leader>p :LspHover<CR>
 
 " When auto-highlight is on, hlsearch is just obstructive
 set nohlsearch

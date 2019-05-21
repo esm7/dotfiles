@@ -72,7 +72,7 @@ ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=red'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #                                          \/ IMPORTANT, zsh-syntax-highlighting must be kept last!
-plugins=(vi-mode taskwarrior docker docker-compose git zsh-syntax-highlighting)
+plugins=(vi-mode taskwarrior docker docker-compose git rust cargo zsh-syntax-highlighting)
 
 # User configuration
 
@@ -182,8 +182,10 @@ if which tmux &> /dev/null; then
 fi
 
 echo "Forking to update dotfiles, log will be at ~/dotbot.log"
-((cd dotfiles && git pull --quiet && ./install > ~/dotbot.log && cd ~ )&)
+((cd $HOME/dotfiles && git pull --quiet && ./install > ~/dotbot.log && cd ~ )&)
 
 # Allow executing something to run after zsh loads
 eval "$RUN_AFTER_ZSH_STARTUP"
 
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

@@ -1,13 +1,52 @@
-if v:version < 800
-	execute pathogen#infect()
+" Install vim-plug if we don't already have it
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-fugitive'
+Plug 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'editorconfig/editorconfig-vim'
+
+" Syntax
+Plug 'mboughaba/i3config.vim'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'rust-lang/rust.vim'
+
+" Dev
+Plug 'prabirshrestha/async.vim', { 'on': [] }
+Plug 'prabirshrestha/vim-lsp', { 'on': [] }
+Plug 'jiangmiao/auto-pairs', { 'on': [] }
+Plug 'Vimjas/vim-python-pep8-indent', { 'on': [] }
+Plug 'pboettch/vim-highlight-cursor-words', { 'on': [] }
+" Plug 'prabirshrestha/asyncomplete.vim', { 'on': [] }
+" Plug 'prabirshrestha/asyncomplete-lsp.vim', { 'on': [] }
+Plug 'Shougo/echodoc.vim', { 'on': [] }
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
+
+if has("nvim")
+	Plug 'ncm2/ncm2', { 'on': [] }
+	Plug 'roxma/nvim-yarp',  { 'on': [] }
+	Plug 'ncm2/ncm2-vim-lsp', { 'on': [] }
+	Plug 'ncm2/ncm2-neosnippet', { 'on': [] }
+	Plug 'Shougo/neosnippet.vim', { 'on': [] }
+	Plug 'Shougo/neosnippet-snippets', { 'on': [] }
+endif
+
+call plug#end()
+
 syntax enable
-
 source ~/.vimrc.base
-source ~/.vimrc.netrw
-
-:packadd vim-fugitive
-
 set background=light
 colorscheme solarized
 set nocompatible
@@ -57,7 +96,6 @@ set cinoptions=c4
 " turn off
 " set autochdir
 
-let g:netrw_banner = 0
 let g:netrw_liststyle = 1
 let g:netrw_timefmt = "%a %Y-%m-%d %T"
 let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
@@ -95,13 +133,13 @@ set completeopt=longest,menuone
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
-imap <c-space> <Plug>(asyncomplete_force_refresh)
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" imap <c-space> <Plug>(asyncomplete_force_refresh)
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 " autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " Make ^F in insert mode the same as ^X^F and also select the first entry
-inoremap <expr> <C-f> '<C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" inoremap <expr> <C-f> '<C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 " Map Ctrl+h to the path of the current file when in command mode
 cmap <C-h> %:p:h
@@ -135,6 +173,7 @@ au FileType markdown set wrap linebreak
 au FileType markdown set conceallevel=3
 au FileType markdown setlocal spell
 au FileType markdown set nofoldenable
+au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " Powerline modifiers
 set laststatus=2

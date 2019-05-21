@@ -88,3 +88,12 @@
 [submodule "vim/pack/default/start/vim-vinegar"]
 	path = vim/pack/default/start/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
+[submodule "vim/pack/default/opt/nvim-yarp"]
+	path = vim/pack/default/opt/nvim-yarp
+	url = https://github.com/roxma/nvim-yarp
+[submodule "vim/pack/default/opt/ncm2"]
+	path = vim/pack/default/opt/ncm2
+	url = https://github.com/ncm2/ncm2
+[submodule "vim/pack/default/opt/ncm2-vim-lsp"]
+	path = vim/pack/default/opt/ncm2-vim-lsp
+	url = https://github.com/ncm2/ncm2-vim-lsp
