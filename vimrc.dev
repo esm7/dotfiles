@@ -43,10 +43,10 @@ endif
 if executable('ccls')
    au User lsp_setup call lsp#register_server({
       \ 'name': 'ccls',
-      \ 'cmd': {server_info->['ccls']},
+      \ 'cmd': {server_info->['ccls', '-log-file=/tmp/ccls.log', '-v=1']},
       \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
       \ 'initialization_options': { 'cacheDirectory': '/tmp/ccls/cache' },
-      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc', 'hpp'],
       \ })
 endif
 " if executable('cquery')
