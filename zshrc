@@ -162,6 +162,7 @@ alias th="task limit:page home"
 alias tp="task processing"
 alias ta="task add"
 alias tm="task modify"
+alias nt="note-task.sh"
 alias tgo="~/scripts/task-helper.py xdg-open"
 alias tcopy="~/scripts/task-helper.py ~/scripts/clip.sh"
 

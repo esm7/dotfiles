@@ -20,27 +20,16 @@ Plug 'editorconfig/editorconfig-vim'
 " Syntax
 Plug 'mboughaba/i3config.vim'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'rust-lang/rust.vim'
 
 " Dev
 Plug 'prabirshrestha/async.vim', { 'on': [] }
-Plug 'prabirshrestha/vim-lsp', { 'on': [] }
 Plug 'jiangmiao/auto-pairs', { 'on': [] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'on': [] }
 Plug 'pboettch/vim-highlight-cursor-words', { 'on': [] }
-" Plug 'prabirshrestha/asyncomplete.vim', { 'on': [] }
-" Plug 'prabirshrestha/asyncomplete-lsp.vim', { 'on': [] }
 Plug 'Shougo/echodoc.vim', { 'on': [] }
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 
 if has("nvim")
-	Plug 'ncm2/ncm2', { 'on': [] }
-	Plug 'roxma/nvim-yarp',  { 'on': [] }
-	Plug 'ncm2/ncm2-vim-lsp', { 'on': [] }
-	Plug 'ncm2/ncm2-neosnippet', { 'on': [] }
-	Plug 'Shougo/neosnippet.vim', { 'on': [] }
-	Plug 'Shougo/neosnippet-snippets', { 'on': [] }
+	Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 endif
 
 call plug#end()
@@ -79,6 +68,9 @@ nnoremap <F4> :set list!<CR>
 " Turn off highlight
 nnoremap <F9> :nohl<CR>
 inoremap <F9> <C-o>:nohl<CR>
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+			\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+			\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 set autoindent
 set smartindent
@@ -90,7 +82,7 @@ let g:pyindent_open_paren = '&sw'
 " Indentation for C comments, see:
 " https://www.reddit.com/r/vim/comments/9kz5rk/format_of_c_comments/
 au FileType cpp setlocal comments=s1:/*,m:\ ,ex-4:*/,://
-set cinoptions=c4
+set cinoptions=c4N-s
 
 " Using autochdir by default, but if dev mode turns on (see below), it will
 " turn off
@@ -107,8 +99,22 @@ let g:netrw_winsize = 25
 " nnoremap - :Explore<CR>
 
 " Don't abandon buffers when they get hidden, allowing to switch between
-" buffers with unsaved changes
-set hidden
+" buffers with unsaved changes.
+" Ideally we'd just 'set hidden', however this creates an issue with netrw.
+" As a workaround, keep 'nohidden', and use an autocmd to set non-netrw
+" buffers to hidden: https://github.com/tpope/vim-vinegar/issues/13
+set nohidden
+augroup netrw_buf_hidden_fix
+    autocmd!
+
+    " Set all non-netrw buffers to bufhidden=hide
+    autocmd BufWinEnter *
+                \  if &ft != 'netrw'
+                \|     set bufhidden=hide
+                \| endif
+
+augroup end
+
 " Switch buffers with Ctrl+Left/Right or Ctrl+h/l
 nnoremap <C-Left> :bp<CR>
 nnoremap <C-Right> :bn<CR>
@@ -161,6 +167,9 @@ hi Operator cterm=bold
 hi Statement cterm=bold
 hi MatchParen cterm=underline,bold ctermfg=magenta ctermbg=none
 hi SpellBad cterm=underline ctermfg=red
+" See https://jonasjacek.github.io/colors/
+hi CocWarningHighlight ctermbg=229
+hi CocErrorHighlight ctermbg=222
 
 if has('gui_running')
 	set guioptions-=T " no toolbar
@@ -186,10 +195,21 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 let mapleader=" "
 
 " <Leader>g to vimgrep the word under the cursor
-map <Leader>g :execute "noautocmd vimgrep /" . expand("<cword>") . "/j **/*"<Bar>:copen
+
 " <Leader>f to grep something recursively and case-insensitive, and position
 " the cursor where you'd enter text
-nnoremap <Leader>s :grep -RIi  *<LEFT><LEFT>
+if executable('rg') && executable('fzf')
+	set grepprg=rg\ --vimgrep
+	nnoremap <Leader>r :Rg<CR>
+	nnoremap <Leader>s :silent grep -i 
+	map <Leader>g :silent grep! <cword><CR>:copen<CR>
+else
+	nnoremap <Leader>s :grep -RIi  *<LEFT><LEFT>
+	map <Leader>g :silent grep! <cword> *<CR>:copen<CR>
+endif
+if executable('fd')
+	let $FZF_DEFAULT_COMMAND = 'fd --type f --color=never'
+endif
 " <Leader>f to run fzf search
 map <Leader>f :Files<CR>
 map <C-S-n> :Files<CR>
