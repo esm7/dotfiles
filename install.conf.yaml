@@ -6,6 +6,7 @@
 - clean: ['~']
 
 - shell:
+  - [~/dotfiles/reset_dotfiles_if_old.sh, Checking version]
   - [~/dotfiles/pre_install.sh, Running pre-install script]
 
 - link:
