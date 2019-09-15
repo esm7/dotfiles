@@ -37,11 +37,7 @@ call plug#end()
 syntax enable
 source ~/.vimrc.base
 set background=light
-try
-	colorscheme solarized
-catch /^Vim\%((\a\+)\)\=:E185/
-	echo "No color scheme found"
-endtry
+silent! colorscheme solarized
 set nocompatible
 set nobackup
 set noswapfile
