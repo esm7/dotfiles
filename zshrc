@@ -182,6 +182,9 @@ if which tmux &> /dev/null; then
 	fi
 fi
 
+# Fix oh-my-zsh permissions if needed
+compaudit | xargs chmod g-w,o-w
+
 echo "Forking to update dotfiles, log will be at ~/dotbot.log"
 ((cd $HOME/dotfiles && git pull --quiet && ./install > ~/dotbot.log && cd ~ )&)
 
