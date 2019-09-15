@@ -16,7 +16,7 @@ if has("nvim")
 
 	nmap <silent> gd <Plug>(coc-definition)
 	nmap <silent> gy <Plug>(coc-type-definition)
-	nmap <silent> gi <Plug>(coc-implementation)
+	nmap <silent> gt <Plug>(coc-implementation)
 	nmap <silent> gr <Plug>(coc-references)
 	" Goto definition in a new window
 	nmap <C-w>gd <C-w>sgd
@@ -38,15 +38,35 @@ endfunction
 
 function! SwitchSourceHeader()
   if (expand ("%:e") == "cpp")
-    find %:t:r.h
+	try
+		find %:t:r.h
+	catch
+		find %:t:r.hpp
+	endtry
+  elseif (expand ("%:e") == "h")
+	try
+		find %:t:r.cpp
+	catch
+		find %:t:r.hpp
+	endtry
   else
-    find %:t:r.cpp
+	try
+		find %:t:r.h
+	catch
+		find %:t:r.cpp
+	endtry
   endif
 endfunction
 
 nmap <Leader>o :call SwitchSourceHeader()<CR>
+" Use 'go' to enter a search for the word under the cursor after switching
+" source-header
+nmap go *<Leader>oggn
+nmap <Leader>m :Gdiffsplit!<CR>
 
 " When auto-highlight is on, hlsearch is just obstructive
 set nohlsearch
+
+source ~/dotfiles/diffoff.vim
 
 

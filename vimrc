@@ -57,6 +57,7 @@ set wildmode=longest,list
 set wildignorecase
 set spelllang=en_us
 set listchars=tab:>-
+set scrolloff=2
 " Toggle paste mode
 set pastetoggle=<F2>
 " Toggle line numbers (i.e. for easy copy over tmux).
@@ -68,6 +69,7 @@ nnoremap <F4> :set list!<CR>
 " Turn off highlight
 nnoremap <F9> :nohl<CR>
 inoremap <F9> <C-o>:nohl<CR>
+" Show by F10 the highlight name
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 			\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 			\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
@@ -82,7 +84,7 @@ let g:pyindent_open_paren = '&sw'
 " Indentation for C comments, see:
 " https://www.reddit.com/r/vim/comments/9kz5rk/format_of_c_comments/
 au FileType cpp setlocal comments=s1:/*,m:\ ,ex-4:*/,://
-set cinoptions=c4N-s
+set cinoptions=c4N-sg0
 
 " Using autochdir by default, but if dev mode turns on (see below), it will
 " turn off
@@ -199,6 +201,8 @@ let mapleader=" "
 " <Leader>f to grep something recursively and case-insensitive, and position
 " the cursor where you'd enter text
 if executable('rg') && executable('fzf')
+	" Make Ripgrep search only the text, not the file name, see https://github.com/junegunn/fzf.vim/issues/346
+	command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
 	set grepprg=rg\ --vimgrep
 	nnoremap <Leader>r :Rg<CR>
 	nnoremap <Leader>s :silent grep -i 
@@ -210,6 +214,7 @@ endif
 if executable('fd')
 	let $FZF_DEFAULT_COMMAND = 'fd --type f --color=never'
 endif
+let $FZF_DEFAULT_OPTS = '--bind=tab:toggle+up,btab:toggle+down'
 " <Leader>f to run fzf search
 map <Leader>f :Files<CR>
 map <C-S-n> :Files<CR>
@@ -218,6 +223,8 @@ map <Leader>b :Buffers<CR>
 map <Leader>c :Commentary<CR>
 map <Leader>q :bd<CR>
 map <Leader>w :w<CR>:bd<CR>
+" Split
+nmap <Leader>= <C-w>s<C-w>w
 
 nnoremap <F5> :source ~/dotfiles/vimrc.dev<CR>
 
