@@ -77,8 +77,8 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 set autoindent
 set smartindent
 filetype plugin indent on
-set breakindent
-set showbreak=↳\ 
+silent! set breakindent
+silent! set showbreak=↳\ 
 " Indent Python `func(\n` just one space rather than two
 let g:pyindent_open_paren = '&sw'
 " Indentation for C comments, see:
