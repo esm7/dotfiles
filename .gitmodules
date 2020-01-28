@@ -4,9 +4,6 @@
 [submodule "oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
 	path = oh-my-zsh-custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
-[submodule "tmux/tmux-colors-solarized"]
-	path = tmux/tmux-colors-solarized
-	url = https://github.com/seebi/tmux-colors-solarized
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
