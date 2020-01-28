@@ -2,3 +2,7 @@
 *.swp
 vim/.netrwhist
 vim/plugged/**
+# tmux plugins are managed by the plugin manager, tpm
+tmux/plugins/*
+# ...but tpm itself should be in the repo
+!tmux/plugins/tpm

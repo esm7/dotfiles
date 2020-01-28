@@ -82,3 +82,6 @@
 [submodule "vim/pack/default/opt/ncm2-vim-lsp"]
 	path = vim/pack/default/opt/ncm2-vim-lsp
 	url = https://github.com/ncm2/ncm2-vim-lsp
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
