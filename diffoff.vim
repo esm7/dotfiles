@@ -24,5 +24,5 @@ function! WipeMatchingBuffers(pattern)
 	exec 'bw ' . join(l:matchList, ' ')
 endfunction
 
-command! Gdiffoff call WipeMatchingBuffers('fugitive://')
+command! Goffdiff call WipeMatchingBuffers('fugitive://')
 
