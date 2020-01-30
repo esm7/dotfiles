@@ -16,6 +16,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'oguzbilgic/vim-gdiff'
 
 " Syntax
 Plug 'mboughaba/i3config.vim'

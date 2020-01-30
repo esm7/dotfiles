@@ -63,6 +63,7 @@ nmap <Leader>o :call SwitchSourceHeader()<CR>
 " source-header
 nmap go *<Leader>oggn
 nmap <Leader>m :Gdiffsplit!<CR>
+command! Gconflicts silent grep! "<<< HEAD" | copen
 
 " When auto-highlight is on, hlsearch is just obstructive
 set nohlsearch
