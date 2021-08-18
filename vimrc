@@ -17,6 +17,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'oguzbilgic/vim-gdiff'
+Plug 'dkarter/bullets.vim'
 
 " Syntax
 Plug 'mboughaba/i3config.vim'
@@ -28,9 +29,11 @@ Plug 'jiangmiao/auto-pairs', { 'on': [] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'on': [] }
 Plug 'pboettch/vim-highlight-cursor-words', { 'on': [] }
 Plug 'Shougo/echodoc.vim', { 'on': [] }
+Plug 'pangloss/vim-javascript', { 'on': [] }
+Plug 'leafgarland/typescript-vim', { 'on': [] }
 
 if has("nvim")
-	Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
 
 call plug#end()
@@ -86,6 +89,7 @@ let g:pyindent_open_paren = '&sw'
 " https://www.reddit.com/r/vim/comments/9kz5rk/format_of_c_comments/
 au FileType cpp setlocal comments=s1:/*,m:\ ,ex-4:*/,://
 set cinoptions=c4N-sg0
+au BufNewFile,BufRead *.ejs set filetype=ejs
 
 " Using autochdir by default, but if dev mode turns on (see below), it will
 " turn off
@@ -186,6 +190,10 @@ au FileType markdown set conceallevel=3
 au FileType markdown setlocal spell
 au FileType markdown set nofoldenable
 au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Note: there is code that turns off spell checking for Markdown in
+" ~/.vim/after/syntax/markdown.vim
+" (it must be loaded after the syntax file)
 
 " Powerline modifiers
 set laststatus=2
