@@ -31,9 +31,13 @@ Plug 'pboettch/vim-highlight-cursor-words', { 'on': [] }
 Plug 'Shougo/echodoc.vim', { 'on': [] }
 Plug 'pangloss/vim-javascript', { 'on': [] }
 Plug 'leafgarland/typescript-vim', { 'on': [] }
+Plug 'leafOfTree/vim-svelte-plugin', { 'on': [] }
 
 if has("nvim")
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	set laststatus=3
+else
+	set laststatus=2
 endif
 
 call plug#end()
@@ -190,13 +194,13 @@ au FileType markdown set conceallevel=3
 au FileType markdown setlocal spell
 au FileType markdown set nofoldenable
 au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+au FileType typescript iabbrev imp import { } from '';<Left><Left>
 
 " Note: there is code that turns off spell checking for Markdown in
 " ~/.vim/after/syntax/markdown.vim
 " (it must be loaded after the syntax file)
 
 " Powerline modifiers
-set laststatus=2
 let g:airline_theme='bubblegum'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_y = ""

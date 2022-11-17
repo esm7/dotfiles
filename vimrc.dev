@@ -4,6 +4,7 @@ highlight AutoHighlight ctermbg=LightMagenta
 call plug#load('vim-python-pep8-indent', 'vim-highlight-cursor-words')
 call plug#load('auto-pairs', 'vim-fugitive')
 call plug#load('vim-javascript', 'typescript-vim')
+call plug#load('vim-svelte-plugin')
 
 set noautochdir
 set signcolumn=yes
@@ -14,6 +15,9 @@ if has("nvim")
 	inoremap <silent><expr> <c-space> coc#refresh()	set completeopt=noinsert,menuone,noselect
 	let g:lsp_signs_enabled = 1
 	let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+
+	let g:svelte_indent_script = 0
+	let g:svelte_indent_style = 0
 
 	call coc#config('python', {'pythonPath': split(execute('!which python'), '\n')[-1]})
 
