@@ -72,7 +72,7 @@ ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=red'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #                                          \/ IMPORTANT, zsh-syntax-highlighting must be kept last!
-plugins=(vi-mode taskwarrior docker docker-compose git rust cargo zsh-syntax-highlighting)
+plugins=(vi-mode docker docker-compose git zsh-syntax-highlighting)
 
 # User configuration
 
