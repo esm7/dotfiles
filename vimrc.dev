@@ -5,6 +5,7 @@ call plug#load('vim-python-pep8-indent', 'vim-highlight-cursor-words')
 call plug#load('auto-pairs', 'vim-fugitive')
 call plug#load('vim-javascript', 'typescript-vim')
 call plug#load('vim-svelte-plugin')
+call plug#load('vim-capnp')
 
 set noautochdir
 set signcolumn=yes
@@ -18,6 +19,9 @@ if has("nvim")
 
 	let g:svelte_indent_script = 0
 	let g:svelte_indent_style = 0
+	let g:svelte_preprocessors = ['typescript']
+	let g:vim_svelte_plugin_load_full_syntax = 1
+	let g:vim_svelte_plugin_use_typescript = 1
 
 	call coc#config('python', {'pythonPath': split(execute('!which python'), '\n')[-1]})
 
@@ -27,6 +31,7 @@ if has("nvim")
 	nmap <silent> gr <Plug>(coc-references)
 	" Goto definition in a new window
 	nmap <C-w>gd <C-w>sgd
+
 	echo "Loaded dev plugins"
 else
 	echo "Some development features currently only work in nvim"

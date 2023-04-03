@@ -18,6 +18,7 @@ Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'oguzbilgic/vim-gdiff'
 Plug 'dkarter/bullets.vim'
+Plug 'alvan/vim-closetag'
 
 " Syntax
 Plug 'mboughaba/i3config.vim'
@@ -32,6 +33,7 @@ Plug 'Shougo/echodoc.vim', { 'on': [] }
 Plug 'pangloss/vim-javascript', { 'on': [] }
 Plug 'leafgarland/typescript-vim', { 'on': [] }
 Plug 'leafOfTree/vim-svelte-plugin', { 'on': [] }
+Plug 'cstrahan/vim-capnp', { 'on': [] }
 
 if has("nvim")
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -94,6 +96,8 @@ let g:pyindent_open_paren = '&sw'
 au FileType cpp setlocal comments=s1:/*,m:\ ,ex-4:*/,://
 set cinoptions=c4N-sg0
 au BufNewFile,BufRead *.ejs set filetype=ejs
+
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.svelte'
 
 " Using autochdir by default, but if dev mode turns on (see below), it will
 " turn off
@@ -181,6 +185,7 @@ hi SpellBad cterm=underline ctermfg=red
 " See https://jonasjacek.github.io/colors/
 hi CocWarningHighlight ctermbg=229
 hi CocErrorHighlight ctermbg=222
+hi CocMenuSel ctermfg='red' ctermbg=white
 
 if has('gui_running')
 	set guioptions-=T " no toolbar
