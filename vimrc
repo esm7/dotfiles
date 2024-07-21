@@ -38,6 +38,7 @@ Plug 'cstrahan/vim-capnp', { 'on': [] }
 if has("nvim")
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	set laststatus=3
+	tnoremap <Esc> <C-\><C-n>
 else
 	set laststatus=2
 endif
