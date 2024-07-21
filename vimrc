@@ -8,7 +8,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
-Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf.vim'
@@ -39,8 +38,10 @@ if has("nvim")
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	set laststatus=3
 	tnoremap <Esc> <C-\><C-n>
+	Plug 'maxmx03/solarized.nvim'
 else
 	set laststatus=2
+	Plug 'altercation/vim-colors-solarized'
 endif
 
 call plug#end()

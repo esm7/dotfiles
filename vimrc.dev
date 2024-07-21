@@ -1,5 +1,5 @@
 let g:HiCursorWords_linkStyle='AutoHighlight'
-highlight AutoHighlight ctermbg=LightMagenta
+highlight AutoHighlight guibg=LightMagenta
 
 call plug#load('vim-python-pep8-indent', 'vim-highlight-cursor-words')
 call plug#load('auto-pairs', 'vim-fugitive')
