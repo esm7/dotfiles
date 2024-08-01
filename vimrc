@@ -5,6 +5,16 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+function! Kitty_scrollback_setup()
+  lua require('kitty-scrollback').setup()
+endfunction
+
+augroup KittyScrollback
+  autocmd!
+  autocmd User KittyScrollbackLaunch lua require('kitty-scrollback').setup()
+augroup END
+
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
@@ -37,8 +47,10 @@ Plug 'cstrahan/vim-capnp', { 'on': [] }
 if has("nvim")
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	set laststatus=3
-	tnoremap <Esc> <C-\><C-n>
 	Plug 'maxmx03/solarized.nvim'
+	" Plug 'mikesmithgh/kitty-scrollback.nvim', { 'on': ['KittyScrollbackGenerateKittens', 'KittyScrollbackCheckHealth', 'User KittyScrollbackLaunch'], 'do': function('Kitty_scrollback_setup') }
+
+	Plug 'mikesmithgh/kitty-scrollback.nvim', { 'do': function('Kitty_scrollback_setup') }
 else
 	set laststatus=2
 	Plug 'altercation/vim-colors-solarized'
@@ -182,12 +194,16 @@ hi Type ctermfg=DarkBlue
 hi Statement cterm=None
 hi Operator cterm=bold
 hi Statement cterm=bold
-hi MatchParen cterm=underline,bold ctermfg=magenta ctermbg=none
-hi SpellBad cterm=underline ctermfg=red
-" See https://jonasjacek.github.io/colors/
-hi CocWarningHighlight ctermbg=229
-hi CocErrorHighlight ctermbg=222
-hi CocMenuSel ctermfg='red' ctermbg=white
+hi MatchParen gui=underline,bold guibg=LightMagenta
+hi SpellBad gui=underline guisp=red
+hi CocWarningHighlight guibg=#ffffd7
+" hi CocErrorHighlight guibg=#ffff87
+hi CocErrorHighlight gui=undercurl guisp=#ffa500
+hi CocUnusedHighlight gui=strikethrough
+hi CocMenuSel ctermfg=red guibg=white
+" Use regular monospace fonts for comments rather than the non-monospace
+" default in the theme
+hi Comment gui=NONE
 
 if has('gui_running')
 	set guioptions-=T " no toolbar
