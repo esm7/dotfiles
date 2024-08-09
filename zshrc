@@ -9,6 +9,9 @@ export ZSH_CUSTOM=$HOME/dotfiles/oh-my-zsh-custom
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="erez"
+# ZSH_THEME="robbyrussell"
+# source /usr/share/zsh/manjaro-zsh-config
+# source /usr/share/zsh/manjaro-zsh-prompt
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,6 +56,7 @@ source $HOME/.zshrc.local 2> /dev/null
 
 # Glob completion when pressing Tab
 setopt glob_complete
+setopt correct                                                  # Auto correct mistakes
 
 # See https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
 # and http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting
@@ -67,12 +71,14 @@ ZSH_HIGHLIGHT_STYLES[precommand]='bold'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=red'
 ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=red'
 
+source /usr/share/fzf/key-bindings.zsh
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#                                          \/ IMPORTANT, zsh-syntax-highlighting must be kept last!
-plugins=(vi-mode docker docker-compose git zsh-syntax-highlighting)
+#                                              \/ IMPORTANT, zsh-syntax-highlighting must be kept last!
+plugins=(vi-mode docker docker-compose git fzf zsh-syntax-highlighting)
 
 # User configuration
 
@@ -80,9 +86,6 @@ source $ZSH/oh-my-zsh.sh
 eval `cat $HOME/dotfiles/lscolors.sh`
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 zstyle ':completion:*' menu select=1
-
-# Source fzf, this is done before custom key bindings are set
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Make key sequences, especially considering vi mode, faster
 KEYTIMEOUT=1
@@ -105,8 +108,6 @@ bindkey '\e.' insert-last-word
 bindkey '^u' undo
 # Complete most recent file matching pattern
 bindkey '^x' _most_recent_file
-
-bindkey '^F' fzf-file-widget
 
 # Make Ctrl+Space jump to Vim normal mode at the beginning of the line
 vi-normal-begin-line() {
@@ -149,28 +150,13 @@ alias gps="ps -ef | grep -i"
 alias lt="ls -trl"
 alias rf="readlink -f"
 alias gdtool="git difftool"
-# sudo which retains the home dir (be careful not to save anything to the home dir!)
-alias sudoh='sudo "HOME=$HOME"'
 alias mine="sudo chown $USER"
+# Open with default handler
+alias go="xdg-open"
 
 # This alias to 'git log' shows nice columns that more or less adapt to the terminal width
 get_terminal_width() { echo $COLUMNS }
 alias glog="git log --graph --oneline --pretty=format:'''%Cred%h%Creset -%C(yellow)%d%Creset %<|(`echo $((get_terminal_width-25))`,trunc)%s %Cgreen(%cd) %C(bold blue)<%aN>%Creset''' --abbrev-commit --abbrev=4 --date=short"
-
-alias to="task limit:page office"
-alias th="task limit:page home"
-alias tp="task processing"
-alias ta="task add"
-alias tm="task modify"
-alias nt="note-task.sh"
-alias tgo="~/scripts/task-helper.py xdg-open"
-alias tcopy="~/scripts/task-helper.py ~/scripts/clip.sh"
-
-# Quick add note
-# Add with Markdown editing
-# alias note="~/dev/sncli/sncli create"
-alias notes="~/scripts/notes-fzf.py --editor=vim"
-alias note="~/scripts/note.sh"
 
 if which tmux &> /dev/null; then
 	num_sessions=$(tmux list-sessions | grep -v attached | wc -l 2> /dev/null)
