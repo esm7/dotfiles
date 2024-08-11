@@ -36,3 +36,6 @@ inoremap <C-s> <C-o>:wa<Enter>
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
 
+" A useful shortcut for the unnamed buffer, as "_ is not fun to type as part
+" of various combinations
+nnoremap <C-'> "_

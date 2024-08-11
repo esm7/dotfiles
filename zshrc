@@ -71,6 +71,8 @@ ZSH_HIGHLIGHT_STYLES[precommand]='bold'
 ZSH_HIGHLIGHT_STYLES[redirection]='fg=red'
 ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=red'
 
+export FZF_DEFAULT_OPTS="--preview=\"~/scripts/fzf-preview.sh {}\""
+
 source /usr/share/fzf/key-bindings.zsh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
