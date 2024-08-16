@@ -50,7 +50,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 source $HOME/.zshrc.local 2> /dev/null
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -153,9 +152,6 @@ alias lt="ls -trl"
 alias rf="readlink -f"
 alias gdtool="git difftool"
 alias mine="sudo chown $USER"
-# Open with default handler
-alias go="xdg-open"
-alias vim="nvim"
 
 # This alias to 'git log' shows nice columns that more or less adapt to the terminal width
 get_terminal_width() { echo $COLUMNS }
