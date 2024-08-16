@@ -155,6 +155,7 @@ alias gdtool="git difftool"
 alias mine="sudo chown $USER"
 # Open with default handler
 alias go="xdg-open"
+alias vim="nvim"
 
 # This alias to 'git log' shows nice columns that more or less adapt to the terminal width
 get_terminal_width() { echo $COLUMNS }
