@@ -45,6 +45,8 @@ Plug 'leafOfTree/vim-svelte-plugin', { 'on': [] }
 Plug 'cstrahan/vim-capnp', { 'on': [] }
 
 if has("nvim")
+	Plug 'sindrets/diffview.nvim', { 'on': [] }
+	Plug 'nvim-tree/nvim-web-devicons', { 'on': [] }
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	set laststatus=3
 	Plug 'maxmx03/solarized.nvim'

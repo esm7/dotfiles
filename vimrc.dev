@@ -6,6 +6,8 @@ call plug#load('auto-pairs', 'vim-fugitive')
 call plug#load('vim-javascript', 'typescript-vim')
 call plug#load('vim-svelte-plugin')
 call plug#load('vim-capnp')
+call plug#load('diffview.nvim')
+call plug#load('nvim-web-devicons')
 
 set noautochdir
 set signcolumn=yes
