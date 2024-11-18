@@ -8,36 +8,116 @@ call plug#load('vim-svelte-plugin')
 call plug#load('vim-capnp')
 call plug#load('diffview.nvim')
 call plug#load('nvim-web-devicons')
+" Avante
+call plug#load('render-markdown.nvim')
+call plug#load('avante.nvim')
+
+lua << EOF
+-- Read Claude API key from ~/.claude
+local claude_key = ''
+local key_file = io.open(os.getenv('HOME') .. '/.claude', 'r')
+if key_file then
+    claude_key = key_file:read('*all'):gsub('%s+', '') -- Remove whitespace
+    key_file:close()
+    vim.env.ANTHROPIC_API_KEY = claude_key
+end
+require('avante_lib').load()
+require('render-markdown').setup({
+	file_types = {"markdown", "Avante"}
+})
+require('avante').setup({
+  ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+  provider = "claude", -- Recommend using Claude
+  auto_suggestions_provider = "openai", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+  claude = {
+    endpoint = "https://api.anthropic.com",
+    temperature = 0,
+    max_tokens = 4096,
+  },
+  behaviour = {
+    auto_suggestions = false, -- Experimental stage
+    auto_set_highlight_group = true,
+    auto_set_keymaps = true,
+    auto_apply_diff_after_generation = false,
+    support_paste_from_clipboard = false,
+  }
+})
+EOF
+nmap <Leader>at :AvanteToggle<CR>
+nmap <Leader>af :AvanteFocus<CR>
 
 set noautochdir
 set signcolumn=yes
 set noshowmode
 
-if has("nvim")
-	" Use <c-space> to trigger completion
-	inoremap <silent><expr> <c-space> coc#refresh()	set completeopt=noinsert,menuone,noselect
-	let g:lsp_signs_enabled = 1
-	let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+" lua << EOF
+" 	require('copilot').setup({
+" 		panel = {
+" 			enabled = false,
+" 			auto_refresh = true,
+" 			keymap = {
+" 				jump_prev = "[[",
+" 				jump_next = "]]",
+" 				accept = "<CR>",
+" 				refresh = "ga",
+" 				open = "<M-CR>"
+" 			},
+" 			layout = {
+" 				position = "bottom", -- | top | left | right
+" 				ratio = 0.4
+" 			},
+" 		},
+" 		suggestion = {
+" 			enabled = false,
+" 			auto_trigger = false,
+" 			hide_during_completion = true,
+" 			debounce = 75,
+" 			keymap = {
+" 				accept = "<M-l>",
+" 				accept_word = false,
+" 				accept_line = false,
+" 				next = "<C-]>",
+" 				prev = "<C-[>",
+" 				dismiss = "<C-0>",
+" 			},
+" 		},
+" 		filetypes = {
+" 			yaml = false,
+" 			markdown = false,
+" 			help = false,
+" 			gitcommit = false,
+" 			gitrebase = false,
+" 			hgcommit = false,
+" 			svn = false,
+" 			cvs = false,
+" 			["."] = false,
+" 		},
+" 		copilot_node_command = 'node', -- Node.js version must be > 18.x
+" 		server_opts_overrides = {},
+" 	})
+" EOF
 
-	let g:svelte_indent_script = 0
-	let g:svelte_indent_style = 0
-	let g:svelte_preprocessors = ['typescript']
-	let g:vim_svelte_plugin_load_full_syntax = 1
-	let g:vim_svelte_plugin_use_typescript = 1
+" Use <c-space> to trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()	set completeopt=noinsert,menuone,noselect
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
-	call coc#config('python', {'pythonPath': split(execute('!which python'), '\n')[-1]})
+let g:svelte_indent_script = 0
+let g:svelte_indent_style = 0
+let g:svelte_preprocessors = ['typescript']
+let g:vim_svelte_plugin_load_full_syntax = 1
+let g:vim_svelte_plugin_use_typescript = 1
 
-	nmap <silent> gd <Plug>(coc-definition)
-	nmap <silent> gy <Plug>(coc-type-definition)
-	nmap <silent> gt <Plug>(coc-implementation)
-	nmap <silent> gr <Plug>(coc-references)
-	" Goto definition in a new window
-	nmap <C-w>gd <C-w>sgd
+call coc#config('python', {'pythonPath': split(execute('!which python'), '\n')[-1]})
 
-	echo "Loaded dev plugins"
-else
-	echo "Some development features currently only work in nvim"
-endif
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gt <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Goto definition in a new window
+nmap <C-w>gd <C-w>sgd
+
+echo "Loaded dev plugins"
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -81,7 +161,4 @@ command! Gconflicts silent grep! "<<< HEAD" | copen
 
 " When auto-highlight is on, hlsearch is just obstructive
 set nohlsearch
-
-source ~/dotfiles/diffoff.vim
-
 

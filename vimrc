@@ -5,16 +5,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-function! Kitty_scrollback_setup()
-  lua require('kitty-scrollback').setup()
-endfunction
-
-augroup KittyScrollback
-  autocmd!
-  autocmd User KittyScrollbackLaunch lua require('kitty-scrollback').setup()
-augroup END
-
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
@@ -44,21 +34,33 @@ Plug 'leafgarland/typescript-vim', { 'on': [] }
 Plug 'leafOfTree/vim-svelte-plugin', { 'on': [] }
 Plug 'cstrahan/vim-capnp', { 'on': [] }
 
+let mapleader=" "
+
 if has("nvim")
 	Plug 'sindrets/diffview.nvim', { 'on': [] }
 	Plug 'nvim-tree/nvim-web-devicons', { 'on': [] }
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	set laststatus=3
 	Plug 'maxmx03/solarized.nvim'
-	" Plug 'mikesmithgh/kitty-scrollback.nvim', { 'on': ['KittyScrollbackGenerateKittens', 'KittyScrollbackCheckHealth', 'User KittyScrollbackLaunch'], 'do': function('Kitty_scrollback_setup') }
 
-	Plug 'mikesmithgh/kitty-scrollback.nvim', { 'do': function('Kitty_scrollback_setup') }
+	" -- Avante -- see in https://github.com/yetone/avante.nvim --
+	" Deps
+	Plug 'stevearc/dressing.nvim'
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'MunifTanjim/nui.nvim'
+	Plug 'MeanderingProgrammer/render-markdown.nvim', { 'on': [] }
+	" Optional deps
+	" Plug 'HakonHarnes/img-clip.nvim', { 'on': [] }
+	" Plug 'zbirenbaum/copilot.lua', { 'on': [] }
+	Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make', 'on': [] }
+
 else
 	set laststatus=2
 	Plug 'altercation/vim-colors-solarized'
 endif
 
 call plug#end()
+
 
 syntax enable
 source ~/.vimrc.base
@@ -115,19 +117,11 @@ au BufNewFile,BufRead *.ejs set filetype=ejs
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.svelte'
 
-" Using autochdir by default, but if dev mode turns on (see below), it will
-" turn off
-" set autochdir
-
 let g:netrw_liststyle = 1
 let g:netrw_timefmt = "%a %Y-%m-%d %T"
 let g:netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
-" let g:netrw_browse_split = 4
-" let g:netrw_altv = 1
 let g:netrw_winsize = 25
-" Open netrw files in previous window
-" let g:netrw_browse_split=4
-" nnoremap - :Explore<CR>
+let g:netrw_sort_by = 'name'
 
 " Don't abandon buffers when they get hidden, allowing to switch between
 " buffers with unsaved changes.
@@ -146,18 +140,18 @@ augroup netrw_buf_hidden_fix
 
 augroup end
 
-" Switch buffers with Ctrl+Left/Right or Ctrl+h/l
-nnoremap <C-Left> :bp<CR>
-nnoremap <C-Right> :bn<CR>
-nnoremap <C-h> :bp<CR>
-nnoremap <C-l> :bn<CR>
+" Switch buffers with Alt+Left/Right or Alt+h/l
+nnoremap <M-Left> :bp<CR>
+nnoremap <M-Right> :bn<CR>
+nnoremap <M-h> :bp<CR>
+nnoremap <M-l> :bn<CR>
+" Move up/down/left/right on splits with Ctrl+h/j/k/l
+nnoremap <C-k> <C-W><Up>
+nnoremap <C-j> <C-W><Down>
+nnoremap <C-h> <C-W><Left>
+nnoremap <C-l> <C-W><Right>
 
 set rtp+=~/.fzf
-
-" Recursively map the tmux Home button to <Home>, which will be caught
-" up by the mapping in .vimrc.base
-nmap <Esc>[1~ <Home>
-imap <Esc>[1~ <Home>
 
 " Completion menu options. Source for some of them:
 " http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
@@ -188,8 +182,8 @@ set isfname-==
 set clipboard^=unnamedplus
 
 " Set search highlight and its color
-hi Search ctermfg='red' guifg='#cb4b16'
-hi IncSearch ctermfg=DarkMagenta
+hi Search ctermfg='red' guifg='white' guibg='#e69370'
+hi IncSearch ctermfg=DarkMagenta guibg='#cb4b16' guifg='white'
 set hlsearch
 
 hi Type ctermfg=DarkBlue
@@ -231,8 +225,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_y = ""
 let g:airline#extensions#whitespace#checks = [ ]
 let g:airline#extensions#tabline#buffer_min_count = 2
-
-let mapleader=" "
 
 " <Leader>g to vimgrep the word under the cursor
 

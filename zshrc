@@ -175,3 +175,6 @@ eval "$RUN_AFTER_ZSH_STARTUP"
 
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/erez/.cache/lm-studio/bin"

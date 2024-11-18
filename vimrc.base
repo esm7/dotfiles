@@ -3,17 +3,9 @@
 
 set incsearch
 set ignorecase
-" nnoremap <M-S-Up> <C-W><Up>
-" nnoremap <M-S-Down> <C-W><Down>
-" nnoremap <M-S-Left> <C-W><Left>
-" nnoremap <M-S-Right> <C-W><Right>
-" nnoremap <M-S-k> <C-W><Up>
-" nnoremap <M-S-j> <C-W><Down>
-" nnoremap <M-S-h> <C-W><Left>
-" nnoremap <M-S-l> <C-W><Right>
 " Move up/down/left/right on splits
-nnoremap <C-k> <C-W><Up>
-nnoremap <C-j> <C-W><Down>
+" nnoremap <C-k> <C-W><Up>
+" nnoremap <C-j> <C-W><Down>
 " Scroll using Ctrl+Up/Down
 nnoremap <C-Down> <C-E>
 nnoremap <C-Up> <C-Y>
