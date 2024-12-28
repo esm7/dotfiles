@@ -12,47 +12,76 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'oguzbilgic/vim-gdiff'
 Plug 'dkarter/bullets.vim'
-Plug 'alvan/vim-closetag'
+" Plug 'alvan/vim-closetag'
 
 " Syntax
 Plug 'mboughaba/i3config.vim'
 Plug 'ekalinin/Dockerfile.vim'
 
 " Dev
-Plug 'prabirshrestha/async.vim', { 'on': [] }
-Plug 'jiangmiao/auto-pairs', { 'on': [] }
-Plug 'Vimjas/vim-python-pep8-indent', { 'on': [] }
-Plug 'pboettch/vim-highlight-cursor-words', { 'on': [] }
-Plug 'Shougo/echodoc.vim', { 'on': [] }
-Plug 'pangloss/vim-javascript', { 'on': [] }
-Plug 'leafgarland/typescript-vim', { 'on': [] }
-Plug 'leafOfTree/vim-svelte-plugin', { 'on': [] }
-Plug 'cstrahan/vim-capnp', { 'on': [] }
+" Plug 'prabirshrestha/async.vim', { 'on': [] }
+" Plug 'jiangmiao/auto-pairs', { 'on': [] }
+" Plug 'Vimjas/vim-python-pep8-indent', { 'on': [] }
+" Plug 'Shougo/echodoc.vim', { 'on': [] }
+" Plug 'pangloss/vim-javascript', { 'on': [] }
+" Plug 'leafgarland/typescript-vim', { 'on': [] }
+" Plug 'cstrahan/vim-capnp', { 'on': [] }
 
 let mapleader=" "
 
 if has("nvim")
-	Plug 'sindrets/diffview.nvim', { 'on': [] }
-	Plug 'nvim-tree/nvim-web-devicons', { 'on': [] }
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'neovim/nvim-lspconfig'
+
+	" Completions
+	Plug 'echasnovski/mini.completion'
+	set pumheight=5
+
+	" Highlight
+	Plug 'echasnovski/mini.cursorword'
+    autocmd FileType * call MiniCursorwordCheck()
+    function! MiniCursorwordCheck() abort
+        if index(['cpp', 'html', 'python', 'typescript', 'javascript', 'svelte', 'bash', 'vim'], &filetype) == -1
+            let b:minicursorword_disable = v:true
+        endif
+    endfunction
+
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+	Plug 'windwp/nvim-autopairs'
+	Plug 'windwp/nvim-ts-autotag'
+
+	Plug 'sindrets/diffview.nvim'
+	Plug 'nvim-tree/nvim-web-devicons'
 	set laststatus=3
 	Plug 'maxmx03/solarized.nvim'
+
+	Plug 'leafOfTree/vim-svelte-plugin'
+	let g:svelte_indent_script = 0
+	let g:svelte_indent_style = 0
+	let g:svelte_preprocessors = ['typescript']
+	let g:vim_svelte_plugin_load_full_syntax = 1
+	let g:vim_svelte_plugin_use_typescript = 1
+
+	Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 	" -- Avante -- see in https://github.com/yetone/avante.nvim --
 	" Deps
 	Plug 'stevearc/dressing.nvim'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'MunifTanjim/nui.nvim'
-	Plug 'MeanderingProgrammer/render-markdown.nvim', { 'on': [] }
+	Plug 'MeanderingProgrammer/render-markdown.nvim'
 	" Optional deps
 	" Plug 'HakonHarnes/img-clip.nvim', { 'on': [] }
 	" Plug 'zbirenbaum/copilot.lua', { 'on': [] }
-	Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make', 'on': [] }
+	Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
+
+	" Show line diagnostics
+	nmap <Leader>d :lua vim.diagnostic.open_float(0, {scope="line"})<CR>
 
 else
 	set laststatus=2
@@ -114,8 +143,6 @@ let g:pyindent_open_paren = '&sw'
 au FileType cpp setlocal comments=s1:/*,m:\ ,ex-4:*/,://
 set cinoptions=c4N-sg0
 au BufNewFile,BufRead *.ejs set filetype=ejs
-
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.svelte'
 
 let g:netrw_liststyle = 1
 let g:netrw_timefmt = "%a %Y-%m-%d %T"
@@ -185,21 +212,27 @@ set clipboard^=unnamedplus
 hi Search ctermfg='red' guifg='white' guibg='#e69370'
 hi IncSearch ctermfg=DarkMagenta guibg='#cb4b16' guifg='white'
 set hlsearch
-
-hi Type ctermfg=DarkBlue
-hi Statement cterm=None
+" TIP: debug the following with ':so $VIMRUNTIME/syntax/hitest.vim'
+" hi Type ctermfg=DarkBlue
 hi Operator cterm=bold
-hi Statement cterm=bold
 hi MatchParen gui=underline,bold guibg=LightMagenta
 hi SpellBad gui=underline guisp=red
-hi CocWarningHighlight guibg=#ffffd7
-" hi CocErrorHighlight guibg=#ffff87
-hi CocErrorHighlight gui=undercurl guisp=#ffa500
-hi CocUnusedHighlight gui=strikethrough
-hi CocMenuSel ctermfg=red guibg=white
+hi Statement gui=bold
+hi Parameter gui=None
+autocmd FileType javascript,typescript,svelte hi Function guifg=None | hi Property guifg=None | hi Constant guifg=None
+hi DiagnosticVirtualTextHint guifg=None
+hi link DiagnosticVirtualTextHint Comment
+
+" hi CocWarningHighlight guibg=#ffffd7
+" " hi CocErrorHighlight guibg=#ffff87
+" hi CocErrorHighlight gui=undercurl guisp=#ffa500
+" hi CocUnusedHighlight gui=strikethrough
+" hi CocMenuSel ctermfg=red guibg=white
 " Use regular monospace fonts for comments rather than the non-monospace
 " default in the theme
 hi Comment gui=NONE
+
+hi @lsp.type.variable guifg=None
 
 if has('gui_running')
 	set guioptions-=T " no toolbar
@@ -213,7 +246,7 @@ au FileType markdown set conceallevel=3
 au FileType markdown setlocal spell
 au FileType markdown set nofoldenable
 au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-au FileType typescript iabbrev imp import { } from '';<Left><Left>
+au FileType typescript,svelte iabbrev imp import { } from '';<Left><Left>
 
 " Note: there is code that turns off spell checking for Markdown in
 " ~/.vim/after/syntax/markdown.vim
@@ -249,8 +282,6 @@ let $FZF_DEFAULT_OPTS = '--bind=tab:toggle+up,btab:toggle+down'
 map <Leader>f :Files<CR>
 map <C-S-n> :Files<CR>
 map <Leader>b :Buffers<CR>
-" Comment/uncomment line or selection (vim-commentary)
-map <Leader>c :Commentary<CR>
 map <Leader>q :bd<CR>
 map <Leader>w :w<CR>:bd<CR>
 " Split

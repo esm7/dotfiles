@@ -1,17 +1,3 @@
-let g:HiCursorWords_linkStyle='AutoHighlight'
-highlight AutoHighlight guibg=LightMagenta
-
-call plug#load('vim-python-pep8-indent', 'vim-highlight-cursor-words')
-call plug#load('auto-pairs', 'vim-fugitive')
-call plug#load('vim-javascript', 'typescript-vim')
-call plug#load('vim-svelte-plugin')
-call plug#load('vim-capnp')
-call plug#load('diffview.nvim')
-call plug#load('nvim-web-devicons')
-" Avante
-call plug#load('render-markdown.nvim')
-call plug#load('avante.nvim')
-
 lua << EOF
 -- Read Claude API key from ~/.claude
 local claude_key = ''
@@ -97,38 +83,29 @@ set noshowmode
 " 	})
 " EOF
 
-" Use <c-space> to trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()	set completeopt=noinsert,menuone,noselect
-let g:lsp_signs_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+" call coc#config('python', {'pythonPath': split(execute('!which python'), '\n')[-1]})
 
-let g:svelte_indent_script = 0
-let g:svelte_indent_style = 0
-let g:svelte_preprocessors = ['typescript']
-let g:vim_svelte_plugin_load_full_syntax = 1
-let g:vim_svelte_plugin_use_typescript = 1
-
-call coc#config('python', {'pythonPath': split(execute('!which python'), '\n')[-1]})
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gt <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gt <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gd :lua vim.lsp.buf.definition()<CR>
+nmap <silent> gr :lua vim.lsp.buf.references()<CR>
 " Goto definition in a new window
 nmap <C-w>gd <C-w>sgd
 
-echo "Loaded dev plugins"
+echo "Dev mode enabled"
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
 
 function! SwitchSourceHeader()
   if (expand ("%:e") == "cpp")
