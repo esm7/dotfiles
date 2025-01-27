@@ -37,6 +37,10 @@ let mapleader=" "
 if has("nvim")
 	Plug 'neovim/nvim-lspconfig'
 
+	" Vim-Kitty split navigation - handles C-h/j/k/l for split navigation
+	" https://github.com/knubie/vim-kitty-navigator
+	Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
+
 	" Completions
 	Plug 'echasnovski/mini.completion'
 	set pumheight=5
@@ -45,12 +49,13 @@ if has("nvim")
 	Plug 'echasnovski/mini.cursorword'
     autocmd FileType * call MiniCursorwordCheck()
     function! MiniCursorwordCheck() abort
-        if index(['cpp', 'html', 'python', 'typescript', 'javascript', 'svelte', 'bash', 'vim'], &filetype) == -1
-            let b:minicursorword_disable = v:true
+        if index(['css', 'cpp', 'html', 'python', 'typescript', 'javascript', 'svelte', 'bash', 'vim'], &filetype) == -1
+            let b:miniacursorword_disable = v:true
         endif
     endfunction
 
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	hi @lsp.type.variable guifg=NONE
 
 	Plug 'windwp/nvim-autopairs'
 	Plug 'windwp/nvim-ts-autotag'
@@ -172,11 +177,6 @@ nnoremap <M-Left> :bp<CR>
 nnoremap <M-Right> :bn<CR>
 nnoremap <M-h> :bp<CR>
 nnoremap <M-l> :bn<CR>
-" Move up/down/left/right on splits with Ctrl+h/j/k/l
-nnoremap <C-k> <C-W><Up>
-nnoremap <C-j> <C-W><Down>
-nnoremap <C-h> <C-W><Left>
-nnoremap <C-l> <C-W><Right>
 
 set rtp+=~/.fzf
 
@@ -218,21 +218,16 @@ hi Operator cterm=bold
 hi MatchParen gui=underline,bold guibg=LightMagenta
 hi SpellBad gui=underline guisp=red
 hi Statement gui=bold
-hi Parameter gui=None
-autocmd FileType javascript,typescript,svelte hi Function guifg=None | hi Property guifg=None | hi Constant guifg=None
-hi DiagnosticVirtualTextHint guifg=None
+hi Parameter gui=NONE
+autocmd FileType javascript,typescript,svelte hi Function guifg=NONE | hi Property guifg=NONE | hi Constant guifg=NONE
+hi DiagnosticVirtualTextHint guifg=NONE
 hi link DiagnosticVirtualTextHint Comment
-
-" hi CocWarningHighlight guibg=#ffffd7
-" " hi CocErrorHighlight guibg=#ffff87
-" hi CocErrorHighlight gui=undercurl guisp=#ffa500
-" hi CocUnusedHighlight gui=strikethrough
-" hi CocMenuSel ctermfg=red guibg=white
 " Use regular monospace fonts for comments rather than the non-monospace
 " default in the theme
 hi Comment gui=NONE
-
-hi @lsp.type.variable guifg=None
+hi Pmenu NONE
+hi link Pmenu StatusLine
+hi Include guifg=NONE
 
 if has('gui_running')
 	set guioptions-=T " no toolbar

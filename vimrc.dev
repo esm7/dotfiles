@@ -8,9 +8,6 @@ if key_file then
     vim.env.ANTHROPIC_API_KEY = claude_key
 end
 require('avante_lib').load()
-require('render-markdown').setup({
-	file_types = {"markdown", "Avante"}
-})
 require('avante').setup({
   ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
   provider = "claude", -- Recommend using Claude
