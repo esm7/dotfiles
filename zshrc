@@ -126,7 +126,7 @@ bindkey -a L vi-end-of-line
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='vim'
+export EDITOR='nvim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -152,6 +152,7 @@ alias lt="ls -trl"
 alias rf="readlink -f"
 alias gdtool="git difftool"
 alias mine="sudo chown $USER"
+alias vim=nvim
 
 # This alias to 'git log' shows nice columns that more or less adapt to the terminal width
 get_terminal_width() { echo $COLUMNS }
