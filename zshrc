@@ -4,23 +4,12 @@
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$HOME/dotfiles/oh-my-zsh-custom
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="erez"
-# ZSH_THEME="robbyrussell"
-# source /usr/share/zsh/manjaro-zsh-config
-# source /usr/share/zsh/manjaro-zsh-prompt
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Always auto update without a prompt
-DISABLE_UPDATE_PROMPT="true"
+zstyle ':omz:update' mode auto
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -79,7 +68,7 @@ source /usr/share/fzf/key-bindings.zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 #                                              \/ IMPORTANT, zsh-syntax-highlighting must be kept last!
-plugins=(vi-mode docker docker-compose git fzf zsh-syntax-highlighting)
+plugins=(vi-mode docker docker-compose git fzf virtualenv zsh-syntax-highlighting)
 
 # User configuration
 
