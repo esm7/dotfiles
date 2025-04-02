@@ -8,8 +8,6 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
 " Plug 'tpope/vim-commentary'
@@ -60,6 +58,7 @@ if has("nvim")
 	Plug 'windwp/nvim-autopairs'
 	Plug 'windwp/nvim-ts-autotag'
 
+	Plug 'nvim-lualine/lualine.nvim'
 	Plug 'sindrets/diffview.nvim'
 	Plug 'nvim-tree/nvim-web-devicons'
 	set laststatus=3
@@ -121,7 +120,6 @@ set spelllang=en_us
 set listchars=tab:>-
 set scrolloff=2
 " Toggle paste mode
-set pastetoggle=<F2>
 " Toggle line numbers (i.e. for easy copy over tmux).
 " TODO: find a good way to toggle breaks (currently in the first time F3 is used, 
 " showbreak is removed)
@@ -248,11 +246,11 @@ au FileType typescript,svelte iabbrev imp import { } from '';<Left><Left>
 " (it must be loaded after the syntax file)
 
 " Powerline modifiers
-let g:airline_theme='bubblegum'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_section_y = ""
-let g:airline#extensions#whitespace#checks = [ ]
-let g:airline#extensions#tabline#buffer_min_count = 2
+"let g:airline_theme='bubblegum'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_section_y = ""
+"let g:airline#extensions#whitespace#checks = [ ]
+"let g:airline#extensions#tabline#buffer_min_count = 2
 
 " <Leader>g to vimgrep the word under the cursor
 
