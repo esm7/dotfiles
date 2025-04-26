@@ -142,6 +142,7 @@ alias rf="readlink -f"
 alias gdtool="git difftool"
 alias mine="sudo chown $USER"
 alias vim=nvim
+alias c="~/scripts/c"
 
 # This alias to 'git log' shows nice columns that more or less adapt to the terminal width
 get_terminal_width() { echo $COLUMNS }
@@ -165,6 +166,8 @@ eval "$RUN_AFTER_ZSH_STARTUP"
 
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export PIPENV_VENV_IN_PROJECT=1
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/home/erez/.cache/lm-studio/bin"

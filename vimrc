@@ -170,6 +170,16 @@ augroup netrw_buf_hidden_fix
 
 augroup end
 
+function! OpenNetrwAndRevealCurrentFile()
+  let l:current_file = expand('%:p')
+  execute 'Explore %:p:h'
+  if filereadable(l:current_file)
+    call search('\V'.fnamemodify(l:current_file, ':t'), 'cw')
+  endif
+endfunction
+
+nnoremap <silent> - :call OpenNetrwAndRevealCurrentFile()<CR>
+
 " Switch buffers with Alt+Left/Right or Alt+h/l
 nnoremap <M-Left> :bp<CR>
 nnoremap <M-Right> :bn<CR>
@@ -181,7 +191,7 @@ set rtp+=~/.fzf
 " Completion menu options. Source for some of them:
 " http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
 " Make completion menus accept the longest matching string
-set completeopt=longest,menuone
+"set completeopt=longest,menuone
 " Make Enter accept the selected entry in a completion menu
 " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Make ^P select the first entry
@@ -205,6 +215,9 @@ cmap <C-h> %:p:h
 set isfname-==
 
 set clipboard^=unnamedplus
+
+set title
+let &titlestring = 'nvim: ' . substitute(expand('%:p'), expand('$HOME'), '~', '')
 
 " Set search highlight and its color
 hi Search ctermfg='red' guifg='white' guibg='#e69370'
@@ -240,6 +253,7 @@ au FileType markdown setlocal spell
 au FileType markdown set nofoldenable
 au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 au FileType typescript,svelte iabbrev imp import { } from '';<Left><Left>
+au FileType svelte iabbrev prop let { name } = $props<{ name: Type }>();
 
 " Note: there is code that turns off spell checking for Markdown in
 " ~/.vim/after/syntax/markdown.vim

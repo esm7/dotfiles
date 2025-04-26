@@ -8,7 +8,7 @@ function vi_mode_prompt_info() {
 
 CLOCK="%{$reset_color%}[%D{%H:%M}]%{$reset_color%}"
 
-PROMPT='${ret_status}%m%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%}$(vi_mode_prompt_info) % %{$reset_color%}'
+PROMPT='${ret_status}%m%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)$(virtualenv_prompt_info)%{$fg_bold[blue]%}$(vi_mode_prompt_info) % %{$reset_color%}'
 RPS1='$CLOCK'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="(%{$fg[red]%}"
