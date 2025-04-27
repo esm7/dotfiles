@@ -18,9 +18,9 @@
     ~/.tmux.conf: tmux/tmux.conf
     ~/.tmux: tmux
     ~/.vim: vim
-    ~/.oh-my-zsh: oh-my-zsh
     ~/.fzf: fzf
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
   - [vim +PlugInstall +qall, Installing Vim plugins]
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"]

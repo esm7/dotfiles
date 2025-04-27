@@ -10,5 +10,3 @@ if [[ ! -f /bin/zsh && ! -f /usr/bin/zsh ]]; then
 	fi
 fi
 
-chmod 700 -R ~/.oh-my-zsh
-chmod 700 -R ~/dotfiles/oh-my-zsh-custom
