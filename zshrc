@@ -67,8 +67,7 @@ source /usr/share/fzf/key-bindings.zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#                                              \/ IMPORTANT, zsh-syntax-highlighting must be kept last!
-plugins=(vi-mode docker docker-compose git fzf virtualenv zsh-syntax-highlighting)
+plugins=(vi-mode docker docker-compose git fzf virtualenv )
 
 # User configuration
 
@@ -171,3 +170,6 @@ export PIPENV_VENV_IN_PROJECT=1
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/home/erez/.cache/lm-studio/bin"
+
+# To be installed by the distro package manager
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

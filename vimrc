@@ -86,6 +86,10 @@ if has("nvim")
 
 	" Show line diagnostics
 	nmap <Leader>d :lua vim.diagnostic.open_float(0, {scope="line"})<CR>
+	" Map ]e and [e to jump to next/prev LSP error (similarly to ]d and [d
+	" jumping to any diagnostic)
+	nnoremap [e :lua vim.diagnostic.jump({count = -1, severity = vim.diagnostic.severity.ERROR, float = true})<CR>
+	nnoremap ]e :lua vim.diagnostic.jump({count = 1, severity = vim.diagnostic.severity.ERROR, float = true})<CR>
 
 else
 	set laststatus=2
@@ -239,6 +243,10 @@ hi Comment gui=NONE
 hi Pmenu NONE
 hi link Pmenu StatusLine
 hi Include guifg=NONE
+" Split colors
+hi Split guibg=red guifg=red
+hi SplitActive guibg=red guifg=red
+set winhl=VertSplit:Split,VertSplitActive:SplitActive,HorSplit:Split,HorSplitActive:SplitActive
 
 if has('gui_running')
 	set guioptions-=T " no toolbar
