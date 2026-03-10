@@ -164,7 +164,7 @@ echo "Forking to update dotfiles, log will be at ~/dotbot.log"
 eval "$RUN_AFTER_ZSH_STARTUP"
 
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 export PIPENV_VENV_IN_PROJECT=1
 

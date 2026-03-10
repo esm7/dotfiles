@@ -30,6 +30,8 @@ Plug 'ekalinin/Dockerfile.vim'
 " Plug 'leafgarland/typescript-vim', { 'on': [] }
 " Plug 'cstrahan/vim-capnp', { 'on': [] }
 
+
+
 let mapleader=" "
 
 if has("nvim")
@@ -38,10 +40,19 @@ if has("nvim")
 	" Vim-Kitty split navigation - handles C-h/j/k/l for split navigation
 	" https://github.com/knubie/vim-kitty-navigator
 	Plug 'knubie/vim-kitty-navigator', {'do': 'cp ./*.py ~/.config/kitty/'}
+	" Terminal mode navigation with Ctrl+h/j/k/l (excluding fzf popups)
+	autocmd TermOpen * if @% !~# 'fzf' && @% !~# 'FZF' |
+		\ tnoremap <buffer> <C-h> <C-\><C-n><C-w>h |
+		\ tnoremap <buffer> <C-j> <C-\><C-n><C-w>j |
+		\ tnoremap <buffer> <C-k> <C-\><C-n><C-w>k |
+		\ tnoremap <buffer> <C-l> <C-\><C-n><C-w>l |
+		\ endif
 
 	" Completions
-	Plug 'echasnovski/mini.completion'
+	"Plug 'echasnovski/mini.completion'
+	Plug 'saghen/blink.cmp', { 'tag': '*' }
 	set pumheight=5
+	inoremap <silent> <C-p> <C-o>:lua vim.lsp.buf.signature_help()<CR>
 
 	" Highlight
 	Plug 'echasnovski/mini.cursorword'
@@ -75,14 +86,25 @@ if has("nvim")
 
 	" -- Avante -- see in https://github.com/yetone/avante.nvim --
 	" Deps
-	Plug 'stevearc/dressing.nvim'
-	Plug 'nvim-lua/plenary.nvim'
-	Plug 'MunifTanjim/nui.nvim'
+	"Plug 'stevearc/dressing.nvim'
+	"Plug 'nvim-lua/plenary.nvim'
+	"Plug 'MunifTanjim/nui.nvim'
 	Plug 'MeanderingProgrammer/render-markdown.nvim'
 	" Optional deps
 	" Plug 'HakonHarnes/img-clip.nvim', { 'on': [] }
 	" Plug 'zbirenbaum/copilot.lua', { 'on': [] }
-	Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
+	"Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' }
+
+	" -- Claude Code plugin
+	"Plug 'coder/claudecode.nvim'
+	"Plug 'folke/snacks.nvim'
+	
+	" -- Copilot
+	Plug 'zbirenbaum/copilot.lua'
+
+	" --- CodeCompanion
+	Plug 'olimorris/codecompanion.nvim'
+	Plug 'nvim-lua/plenary.nvim'
 
 	" Show line diagnostics
 	nmap <Leader>d :lua vim.diagnostic.open_float(0, {scope="line"})<CR>

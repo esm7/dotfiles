@@ -1,37 +1,118 @@
 lua << EOF
--- Read Claude API key from ~/.claude
+-- Read Claude API key from ~/.claude-key
 local claude_key = ''
-local key_file = io.open(os.getenv('HOME') .. '/.claude', 'r')
+local key_file = io.open(os.getenv('HOME') .. '/.claude-key', 'r')
 if key_file then
     claude_key = key_file:read('*all'):gsub('%s+', '') -- Remove whitespace
     key_file:close()
     vim.env.ANTHROPIC_API_KEY = claude_key
 end
-require('avante_lib').load()
-require('avante').setup({
-  ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-  provider = "claude", -- Recommend using Claude
-  auto_suggestions_provider = "openai", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
-  claude = {
-    endpoint = "https://api.anthropic.com",
-    temperature = 0,
-    max_tokens = 4096,
-	disable_tools = true,
-  },
-  behaviour = {
-    auto_suggestions = false, -- Experimental stage
-    auto_set_highlight_group = true,
-    auto_set_keymaps = true,
-    auto_apply_diff_after_generation = false,
-    support_paste_from_clipboard = false,
-  }
+
+require('codecompanion').setup({
+	adapters = {
+		http = {
+			anthropic = function()
+				return require("codecompanion.adapters").extend("anthropic", {
+					env = {
+						api_key = "ANTHROPIC_API_KEY",
+					},
+				})
+			end,
+		},
+	},
+	strategies = {
+		chat = {
+			tools = {
+				opts = {
+					default_tools = {
+						"insert_edit_into_file"
+					}
+				}
+			},
+		}
+	},
+	display = {
+		chat = {
+			window = {
+				position = "right",
+				width = 0.3
+			}
+		},
+		diff = {
+			enabled = true,
+			provider = "inline",
+			provider_opts = {
+				inline = {
+					layout = "buffer"
+				}
+			}
+		}
+	},
+	keymaps = {
+		completion = {
+			  modes = { i = "<C-=>" },
+			  index = 1,
+			  callback = "keymaps.completion",
+			  description = "[Chat] Completion menu",
+		}
+	}
 })
+
+--require('claudecode').setup({
+--	dependencies = { "folke/snacks.nvim" },
+--	config = true,
+--		{
+--				"<leader>as",
+--				"<cmd>ClaudeCodeTreeAdd<cr>",
+--				desc = "Add file",
+--				ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
+--		},
+--})
+
+--require('avante_lib').load()
+--"require('avante').setup({
+--"  ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+--"  provider = "claude", -- Recommend using Claude
+--"  auto_suggestions_provider = "openai", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+--"  providers = {
+--"	  claude = {
+--		endpoint = "https://api.anthropic.com",
+--		disable_tools = true,
+--		extra_request_body = {
+--			temperature = 0,
+--			max_tokens = 4096,
+--		},
+--	  },
+--  },
+--  behaviour = {
+--    auto_suggestions = false, -- Experimental stage
+--    auto_set_highlight_group = true,
+--    auto_set_keymaps = true,
+--    auto_apply_diff_after_generation = false,
+--    support_paste_from_clipboard = false,
+--  }
+--})
 EOF
-nmap <Leader>at :AvanteToggle<CR>
-nmap <Leader>af :AvanteFocus<CR>
+
+"nmap <Leader>ac :ClaudeCode<cr>
+"nmap <Leader>af :ClaudeCodeFocus<cr>
+"nmap <leader>ar :ClaudeCode --resume<cr>
+"nmap <leader>aC :ClaudeCode --continue<cr>
+"nmap <leader>am :ClaudeCodeSelectModel<cr>
+"nmap <leader>ab :ClaudeCodeAdd %<cr>
+"vmap <leader>as :ClaudeCodeSend<cr>
+"nmap <leader>aa :ClaudeCodeDiffAccept<cr>
+"nmap <leader>ad :ClaudeCodeDiffDeny<cr>
+
+"nmap <Leader>at :AvanteToggle<CR>
+"nmap <Leader>af :AvanteFocus<CR>
+
+nmap <Leader>aa :CodeCompanion 
+vmap <Leader>aa :CodeCompanion 
+nmap <Leader>ac :CodeCompanionChat<CR>
 
 set noautochdir
-set signcolumn=yes
+set signcolumn=yes:1
 set noshowmode
 
 " lua << EOF
