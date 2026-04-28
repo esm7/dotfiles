@@ -39,6 +39,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+setopt HIST_IGNORE_SPACE
+
 source $HOME/.zshrc.local 2> /dev/null
 # export MANPATH="/usr/local/man:$MANPATH"
 

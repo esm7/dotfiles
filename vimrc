@@ -16,6 +16,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'oguzbilgic/vim-gdiff'
 Plug 'dkarter/bullets.vim'
 " Plug 'alvan/vim-closetag'
+" Markdown preview with :MarkdownPreview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+" Don't auto-close
+let g:mkdp_auto_close = 0
 
 " Syntax
 Plug 'mboughaba/i3config.vim'
